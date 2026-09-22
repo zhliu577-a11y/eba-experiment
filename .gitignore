@@ -1,0 +1,21 @@
+# Local virtual environment
+.venv/
+
+# Scratch and temporary files
+.tmp/
+
+# Python caches
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+
+# Keep the extracted ProVerif runtime locally, not in Git
+.tools/*.tar.gz
+.tools/proverif2.05/*.exe
+
+# Editor and operating-system metadata
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

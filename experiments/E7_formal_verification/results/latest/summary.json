@@ -1,0 +1,204 @@
+{
+  "artifacts_preserved": true,
+  "environment": {
+    "captured_at": "2026-09-22T08:37:31.987703+00:00",
+    "machine": "AMD64",
+    "platform": "Windows-10-10.0.19045-SP0",
+    "processor": "Intel64 Family 6 Model 167 Stepping 1, GenuineIntel",
+    "python": "3.13.15 (tags/v3.13.15:4061bc4, Aug  5 2026, 13:05:39) [MSC v.1944 64 bit (AMD64)]",
+    "python_executable": "E:\\文档\\论文\\.venv\\Scripts\\python.exe"
+  },
+  "experiment": "E7_formal_verification",
+  "negative_expected_failures_passed": true,
+  "negative_models_expected_to_fail": {
+    "N1_shared_session_key": "R5",
+    "N2_remove_copy_hash": "R3",
+    "N3_remove_anchor_window": "freshness/expiry",
+    "N4_remove_rule_re_evaluation": "R3",
+    "N5_single_sided_root": "truncation/equivocation coverage",
+    "N6_remove_accuser_signature": "R4"
+  },
+  "positive_all_queries_passed": true,
+  "positive_model": "E:\\文档\\论文\\experiments\\E7_formal_verification\\results\\latest\\models\\EBA_positive.pv",
+  "proverif_executable": "E:\\文档\\论文\\.tools\\proverif2.05\\proverif.exe",
+  "runs": {
+    "EBA_positive": {
+      "command": "E:\\文档\\论文\\.tools\\proverif2.05\\proverif.exe E:\\文档\\论文\\experiments\\E7_formal_verification\\results\\latest\\models\\EBA_positive.pv",
+      "query_count": 8,
+      "query_results": {
+        "Q6_freshness": true,
+        "Q7_accuser_verification": true,
+        "Q8_two_sided_roots": true,
+        "R1_authentication": true,
+        "R2_chain_binding": true,
+        "R3_evidence_and_rule": true,
+        "R4_non_repudiation": true,
+        "R5_anchor_binding": true
+      },
+      "returncode": 0,
+      "stderr": "E:\\文档\\论文\\experiments\\E7_formal_verification\\results\\latest\\traces\\EBA_positive.stderr.txt",
+      "stdout": "E:\\文档\\论文\\experiments\\E7_formal_verification\\results\\latest\\traces\\EBA_positive.stdout.txt"
+    },
+    "N1_shared_session_key": {
+      "command": "E:\\文档\\论文\\.tools\\proverif2.05\\proverif.exe E:\\文档\\论文\\experiments\\E7_formal_verification\\results\\latest\\models\\N1_shared_session_key.pv",
+      "query_count": 8,
+      "query_results": {
+        "Q6_freshness": true,
+        "Q7_accuser_verification": true,
+        "Q8_two_sided_roots": true,
+        "R1_authentication": true,
+        "R2_chain_binding": true,
+        "R3_evidence_and_rule": true,
+        "R4_non_repudiation": true,
+        "R5_anchor_binding": false
+      },
+      "returncode": 0,
+      "stderr": "E:\\文档\\论文\\experiments\\E7_formal_verification\\results\\latest\\traces\\N1_shared_session_key.stderr.txt",
+      "stdout": "E:\\文档\\论文\\experiments\\E7_formal_verification\\results\\latest\\traces\\N1_shared_session_key.stdout.txt"
+    },
+    "N2_remove_copy_hash": {
+      "command": "E:\\文档\\论文\\.tools\\proverif2.05\\proverif.exe E:\\文档\\论文\\experiments\\E7_formal_verification\\results\\latest\\models\\N2_remove_copy_hash.pv",
+      "query_count": 8,
+      "query_results": {
+        "Q6_freshness": true,
+        "Q7_accuser_verification": true,
+        "Q8_two_sided_roots": true,
+        "R1_authentication": true,
+        "R2_chain_binding": true,
+        "R3_evidence_and_rule": false,
+        "R4_non_repudiation": true,
+        "R5_anchor_binding": true
+      },
+      "returncode": 0,
+      "stderr": "E:\\文档\\论文\\experiments\\E7_formal_verification\\results\\latest\\traces\\N2_remove_copy_hash.stderr.txt",
+      "stdout": "E:\\文档\\论文\\experiments\\E7_formal_verification\\results\\latest\\traces\\N2_remove_copy_hash.stdout.txt"
+    },
+    "N3_remove_anchor_window": {
+      "command": "E:\\文档\\论文\\.tools\\proverif2.05\\proverif.exe E:\\文档\\论文\\experiments\\E7_formal_verification\\results\\latest\\models\\N3_remove_anchor_window.pv",
+      "query_count": 8,
+      "query_results": {
+        "Q6_freshness": false,
+        "Q7_accuser_verification": true,
+        "Q8_two_sided_roots": true,
+        "R1_authentication": true,
+        "R2_chain_binding": true,
+        "R3_evidence_and_rule": true,
+        "R4_non_repudiation": true,
+        "R5_anchor_binding": true
+      },
+      "returncode": 0,
+      "stderr": "E:\\文档\\论文\\experiments\\E7_formal_verification\\results\\latest\\traces\\N3_remove_anchor_window.stderr.txt",
+      "stdout": "E:\\文档\\论文\\experiments\\E7_formal_verification\\results\\latest\\traces\\N3_remove_anchor_window.stdout.txt"
+    },
+    "N4_remove_rule_re_evaluation": {
+      "command": "E:\\文档\\论文\\.tools\\proverif2.05\\proverif.exe E:\\文档\\论文\\experiments\\E7_formal_verification\\results\\latest\\models\\N4_remove_rule_re_evaluation.pv",
+      "query_count": 8,
+      "query_results": {
+        "Q6_freshness": true,
+        "Q7_accuser_verification": true,
+        "Q8_two_sided_roots": true,
+        "R1_authentication": true,
+        "R2_chain_binding": true,
+        "R3_evidence_and_rule": false,
+        "R4_non_repudiation": true,
+        "R5_anchor_binding": true
+      },
+      "returncode": 0,
+      "stderr": "E:\\文档\\论文\\experiments\\E7_formal_verification\\results\\latest\\traces\\N4_remove_rule_re_evaluation.stderr.txt",
+      "stdout": "E:\\文档\\论文\\experiments\\E7_formal_verification\\results\\latest\\traces\\N4_remove_rule_re_evaluation.stdout.txt"
+    },
+    "N5_single_sided_root": {
+      "command": "E:\\文档\\论文\\.tools\\proverif2.05\\proverif.exe E:\\文档\\论文\\experiments\\E7_formal_verification\\results\\latest\\models\\N5_single_sided_root.pv",
+      "query_count": 8,
+      "query_results": {
+        "Q6_freshness": true,
+        "Q7_accuser_verification": true,
+        "Q8_two_sided_roots": false,
+        "R1_authentication": true,
+        "R2_chain_binding": true,
+        "R3_evidence_and_rule": true,
+        "R4_non_repudiation": true,
+        "R5_anchor_binding": true
+      },
+      "returncode": 0,
+      "stderr": "E:\\文档\\论文\\experiments\\E7_formal_verification\\results\\latest\\traces\\N5_single_sided_root.stderr.txt",
+      "stdout": "E:\\文档\\论文\\experiments\\E7_formal_verification\\results\\latest\\traces\\N5_single_sided_root.stdout.txt"
+    },
+    "N6_remove_accuser_signature": {
+      "command": "E:\\文档\\论文\\.tools\\proverif2.05\\proverif.exe E:\\文档\\论文\\experiments\\E7_formal_verification\\results\\latest\\models\\N6_remove_accuser_signature.pv",
+      "query_count": 8,
+      "query_results": {
+        "Q6_freshness": true,
+        "Q7_accuser_verification": false,
+        "Q8_two_sided_roots": true,
+        "R1_authentication": true,
+        "R2_chain_binding": true,
+        "R3_evidence_and_rule": true,
+        "R4_non_repudiation": false,
+        "R5_anchor_binding": true
+      },
+      "returncode": 0,
+      "stderr": "E:\\文档\\论文\\experiments\\E7_formal_verification\\results\\latest\\traces\\N6_remove_accuser_signature.stderr.txt",
+      "stdout": "E:\\文档\\论文\\experiments\\E7_formal_verification\\results\\latest\\traces\\N6_remove_accuser_signature.stdout.txt"
+    },
+    "negative_checks": {
+      "N1_shared_session_key": {
+        "expected_failure": "R5",
+        "expected_failure_observed": true,
+        "expected_queries": [
+          "R5_anchor_binding"
+        ],
+        "passed": true,
+        "unaffected_queries_passed": true
+      },
+      "N2_remove_copy_hash": {
+        "expected_failure": "R3",
+        "expected_failure_observed": true,
+        "expected_queries": [
+          "R3_evidence_and_rule"
+        ],
+        "passed": true,
+        "unaffected_queries_passed": true
+      },
+      "N3_remove_anchor_window": {
+        "expected_failure": "freshness/expiry",
+        "expected_failure_observed": true,
+        "expected_queries": [
+          "Q6_freshness"
+        ],
+        "passed": true,
+        "unaffected_queries_passed": true
+      },
+      "N4_remove_rule_re_evaluation": {
+        "expected_failure": "R3",
+        "expected_failure_observed": true,
+        "expected_queries": [
+          "R3_evidence_and_rule"
+        ],
+        "passed": true,
+        "unaffected_queries_passed": true
+      },
+      "N5_single_sided_root": {
+        "expected_failure": "truncation/equivocation coverage",
+        "expected_failure_observed": true,
+        "expected_queries": [
+          "Q8_two_sided_roots"
+        ],
+        "passed": true,
+        "unaffected_queries_passed": true
+      },
+      "N6_remove_accuser_signature": {
+        "expected_failure": "R4",
+        "expected_failure_observed": true,
+        "expected_queries": [
+          "Q7_accuser_verification",
+          "R4_non_repudiation"
+        ],
+        "passed": true,
+        "unaffected_queries_passed": true
+      }
+    }
+  },
+  "status": "verified",
+  "title": "E7 ProVerif Positive and Negative Verification"
+}

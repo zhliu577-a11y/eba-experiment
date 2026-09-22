@@ -1,0 +1,19 @@
+R1 authentication and agreement
+query inj-event(AcceptedEvent(sid, d, seq, sender))
+==>{} inj-event(HonestSend(sid, d, seq, sender)).
+
+R2 chain binding
+query ev:Admit(sid, d, seq, h)
+==>{} ev:ChainLink(sid, d, seq, h).
+
+R3 acceptance implies valid evidence and rule violation
+query ev:AcceptAlert(accuser, sid, d, seq, rule)
+==>{} ev:ValidEvent(sid, d, seq) && ev:RuleViolation(sid, d, seq, rule).
+
+R4 non-repudiation
+query inj-event(AcceptAlert(accuser, sid, d, seq, rule))
+==>{} inj-event(Accuse(accuser, sid, d, seq)).
+
+R5 sender binding on third-party path
+query inj-event(AcceptedEvent(sid, d, seq, sender))
+==>{} inj-event(AnchorBinds(sid, d, sender)).

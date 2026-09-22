@@ -1,0 +1,204 @@
+Process 0 (that is, the initial process):
+{1}new signing_key: skey;
+{2}let public_key: pkey = pk(signing_key) in
+(
+    {3}!
+    {4}let signing_key_1: skey = signing_key in
+    {5}new previous_head: bitstring;
+    {6}let body: bitstring = (session_id,d_ab,seq1,agent_a,previous_head) in
+    {7}let event_signature: signature = sign(body,signing_key_1) in
+    {8}let anchor_signature: signature = sign((session_id,d_ab,agent_a),signing_key_1) in
+    {9}let evidence_signature: signature = sign((session_id,d_ab,seq1,rule_allow),signing_key_1) in
+    {10}event HonestSend(session_id,d_ab,seq1,agent_a,previous_head);
+    {11}event ChainLink(session_id,d_ab,seq1,previous_head);
+    {12}out(carrier, (body,event_signature,anchor_signature,evidence_signature))
+) | (
+    {13}!
+    {14}in(carrier, (body_1: bitstring,event_signature_1: signature,anchor_signature_1: signature,evidence_signature_1: signature));
+    {15}let (s: bitstring,d: bitstring,n: bitstring,sender_name: bitstring,previous_head_1: bitstring) = body_1 in
+    {16}let alert_tag: mac_code = accuser_mac((s,d,n,rule_allow),accuser_secret) in
+    {17}out(carrier, (body_1,event_signature_1,anchor_signature_1,evidence_signature_1,alert_tag))
+) | (
+    {18}in(carrier, (body_2: bitstring,event_signature_2: signature,anchor_signature_2: signature,evidence_signature_2: signature,alert_tag_1: mac_code));
+    {19}if (eba_checksig(event_signature_2,public_key) = body_2) then
+    {20}let (s_1: bitstring,d_1: bitstring,n_1: bitstring,sender_name_1: bitstring,previous_head_2: bitstring) = body_2 in
+    (
+        {21}event Admit(s_1,d_1,n_1,previous_head_2);
+        {22}if (eba_checksig(anchor_signature_2,public_key) = (s_1,d_1,sender_name_1)) then
+        (
+            {23}event AnchorBinds(s_1,d_1,sender_name_1);
+            {24}if (eba_checksig(evidence_signature_2,public_key) = (s_1,d_1,n_1,rule_allow)) then
+            (
+                {25}event ValidEvent(s_1,d_1,n_1);
+                {26}event RuleViolation(s_1,d_1,n_1,rule_allow);
+                {27}event Freshness(s_1,d_1,n_1);
+                {28}event BothSidedRoot(s_1,d_1);
+                {29}if (alert_tag_1 = accuser_mac((s_1,d_1,n_1,rule_allow),accuser_secret)) then
+                    {30}event AccuserVerified(agent_b,s_1,d_1,n_1);
+                    {31}event Accuse(agent_b,s_1,d_1,n_1);
+                    {32}event AcceptedEvent(s_1,d_1,n_1,sender_name_1,previous_head_2);
+                    {33}event AcceptAlert(agent_b,s_1,d_1,n_1,rule_allow)
+                else
+                    {34}event NoOp(session_id)
+            )
+            else
+                {35}event NoOp(session_id)
+        )
+        else
+            {36}event NoOp(session_id)
+    )
+    else
+        {37}event NoOp(session_id)
+)
+
+File "E:\文档\论文\experiments\E7_formal_verification\results\latest\models\EBA_positive.pv", line 42, characters 49-54:
+Warning: identifier sender rebound.
+File "E:\文档\论文\experiments\E7_formal_verification\results\latest\models\EBA_positive.pv", line 51, characters 7-13:
+Warning: identifier accuser rebound.
+File "E:\文档\论文\experiments\E7_formal_verification\results\latest\models\EBA_positive.pv", line 55, characters 7-13:
+Warning: identifier accuser rebound.
+File "E:\文档\论文\experiments\E7_formal_verification\results\latest\models\EBA_positive.pv", line 59, characters 49-54:
+Warning: identifier sender rebound.
+File "E:\文档\论文\experiments\E7_formal_verification\results\latest\models\EBA_positive.pv", line 64, characters 7-13:
+Warning: identifier accuser rebound.
+File "E:\文档\论文\experiments\E7_formal_verification\results\latest\models\EBA_positive.pv", line 68, characters 7-13:
+Warning: identifier accuser rebound.
+--  Process 1 (that is, process 0, with let moved downwards):
+{1}new signing_key: skey;
+(
+    {3}!
+    {5}new previous_head: bitstring;
+    {10}event HonestSend(session_id,d_ab,seq1,agent_a,previous_head);
+    {11}event ChainLink(session_id,d_ab,seq1,previous_head);
+    {4}let signing_key_1: skey = signing_key in
+    {9}let evidence_signature: signature = sign((session_id,d_ab,seq1,rule_allow),signing_key_1) in
+    {8}let anchor_signature: signature = sign((session_id,d_ab,agent_a),signing_key_1) in
+    {6}let body: bitstring = (session_id,d_ab,seq1,agent_a,previous_head) in
+    {7}let event_signature: signature = sign(body,signing_key_1) in
+    {12}out(carrier, (body,event_signature,anchor_signature,evidence_signature))
+) | (
+    {13}!
+    {14}in(carrier, (body_1: bitstring,event_signature_1: signature,anchor_signature_1: signature,evidence_signature_1: signature));
+    {15}let (s: bitstring,d: bitstring,n: bitstring,sender_name: bitstring,previous_head_1: bitstring) = body_1 in
+    {16}let alert_tag: mac_code = accuser_mac((s,d,n,rule_allow),accuser_secret) in
+    {17}out(carrier, (body_1,event_signature_1,anchor_signature_1,evidence_signature_1,alert_tag))
+) | (
+    {18}in(carrier, (body_2: bitstring,event_signature_2: signature,anchor_signature_2: signature,evidence_signature_2: signature,alert_tag_1: mac_code));
+    {2}let public_key: pkey = pk(signing_key) in
+    {19}if (eba_checksig(event_signature_2,public_key) = body_2) then
+    {20}let (s_1: bitstring,d_1: bitstring,n_1: bitstring,sender_name_1: bitstring,previous_head_2: bitstring) = body_2 in
+    (
+        {21}event Admit(s_1,d_1,n_1,previous_head_2);
+        {22}if (eba_checksig(anchor_signature_2,public_key) = (s_1,d_1,sender_name_1)) then
+        (
+            {23}event AnchorBinds(s_1,d_1,sender_name_1);
+            {24}if (eba_checksig(evidence_signature_2,public_key) = (s_1,d_1,n_1,rule_allow)) then
+            (
+                {25}event ValidEvent(s_1,d_1,n_1);
+                {26}event RuleViolation(s_1,d_1,n_1,rule_allow);
+                {27}event Freshness(s_1,d_1,n_1);
+                {28}event BothSidedRoot(s_1,d_1);
+                {29}if (alert_tag_1 = accuser_mac((s_1,d_1,n_1,rule_allow),accuser_secret)) then
+                    {30}event AccuserVerified(agent_b,s_1,d_1,n_1);
+                    {31}event Accuse(agent_b,s_1,d_1,n_1);
+                    {32}event AcceptedEvent(s_1,d_1,n_1,sender_name_1,previous_head_2);
+                    {33}event AcceptAlert(agent_b,s_1,d_1,n_1,rule_allow)
+                else
+                    {34}event NoOp(session_id)
+            )
+            else
+                {35}event NoOp(session_id)
+        )
+        else
+            {36}event NoOp(session_id)
+    )
+    else
+        {37}event NoOp(session_id)
+)
+
+-- Query inj-event(AcceptedEvent(s_2,d_2,n_2,sender_1,previous)) ==> inj-event(HonestSend(s_2,d_2,n_2,sender_1,previous)) in process 1.
+Translating the process into Horn clauses...
+Completing...
+Starting query inj-event(AcceptedEvent(s_2,d_2,n_2,sender_1,previous)) ==> inj-event(HonestSend(s_2,d_2,n_2,sender_1,previous))
+goal reachable: b-inj-event(HonestSend(session_id[],d_ab[],seq1[],agent_a[],previous_head_3),@occ10_1) -> inj-event(AcceptedEvent(session_id[],d_ab[],seq1[],agent_a[],previous_head_3),@occ32_1)
+The hypothesis occurs strictly before the conclusion.
+Abbreviations:
+previous_head_3 = previous_head[!1 = @sid]
+@occ32_1 = @occ32[alert_tag_1 = accuser_mac((session_id[],d_ab[],seq1[],rule_allow[]),accuser_secret[]),evidence_signature_2 = sign((session_id[],d_ab[],seq1[],rule_allow[]),signing_key[]),anchor_signature_2 = sign((session_id[],d_ab[],agent_a[]),signing_key[]),event_signature_2 = sign((session_id[],d_ab[],seq1[],agent_a[],previous_head_3),signing_key[]),body_2 = (session_id[],d_ab[],seq1[],agent_a[],previous_head_3)]
+@occ10_1 = @occ10[!1 = @sid]
+RESULT inj-event(AcceptedEvent(s_2,d_2,n_2,sender_1,previous)) ==> inj-event(HonestSend(s_2,d_2,n_2,sender_1,previous)) is true.
+-- Query event(Admit(s_2,d_2,n_2,previous)) ==> event(ChainLink(s_2,d_2,n_2,previous)) in process 1.
+Translating the process into Horn clauses...
+Completing...
+Starting query event(Admit(s_2,d_2,n_2,previous)) ==> event(ChainLink(s_2,d_2,n_2,previous))
+goal reachable: b-event(ChainLink(session_id[],d_ab[],seq1[],previous_head_3)) -> event(Admit(session_id[],d_ab[],seq1[],previous_head_3))
+Abbreviations:
+previous_head_3 = previous_head[!1 = @sid]
+RESULT event(Admit(s_2,d_2,n_2,previous)) ==> event(ChainLink(s_2,d_2,n_2,previous)) is true.
+-- Query event(AcceptAlert(accuser_1,s_2,d_2,n_2,rule)) ==> event(ValidEvent(s_2,d_2,n_2)) && event(RuleViolation(s_2,d_2,n_2,rule)) in process 1.
+Translating the process into Horn clauses...
+Completing...
+Starting query event(AcceptAlert(accuser_1,s_2,d_2,n_2,rule)) ==> event(ValidEvent(s_2,d_2,n_2)) && event(RuleViolation(s_2,d_2,n_2,rule))
+goal reachable: b-event(RuleViolation(session_id[],d_ab[],seq1[],rule_allow[])) && b-event(ValidEvent(session_id[],d_ab[],seq1[])) -> event(AcceptAlert(agent_b[],session_id[],d_ab[],seq1[],rule_allow[]))
+RESULT event(AcceptAlert(accuser_1,s_2,d_2,n_2,rule)) ==> event(ValidEvent(s_2,d_2,n_2)) && event(RuleViolation(s_2,d_2,n_2,rule)) is true.
+-- Query inj-event(AcceptAlert(accuser_1,s_2,d_2,n_2,rule)) ==> inj-event(Accuse(accuser_1,s_2,d_2,n_2)) in process 1.
+Translating the process into Horn clauses...
+Completing...
+Starting query inj-event(AcceptAlert(accuser_1,s_2,d_2,n_2,rule)) ==> inj-event(Accuse(accuser_1,s_2,d_2,n_2))
+goal reachable: b-inj-event(Accuse(agent_b[],session_id[],d_ab[],seq1[]),@occ31_1) -> inj-event(AcceptAlert(agent_b[],session_id[],d_ab[],seq1[],rule_allow[]),@occ33_1)
+The hypothesis occurs strictly before the conclusion.
+Abbreviations:
+previous_head_3 = previous_head[!1 = @sid]
+@occ33_1 = @occ33[alert_tag_1 = accuser_mac((session_id[],d_ab[],seq1[],rule_allow[]),accuser_secret[]),evidence_signature_2 = sign((session_id[],d_ab[],seq1[],rule_allow[]),signing_key[]),anchor_signature_2 = sign((session_id[],d_ab[],agent_a[]),signing_key[]),event_signature_2 = sign((session_id[],d_ab[],seq1[],agent_a[],previous_head_3),signing_key[]),body_2 = (session_id[],d_ab[],seq1[],agent_a[],previous_head_3)]
+@occ31_1 = @occ31[alert_tag_1 = accuser_mac((session_id[],d_ab[],seq1[],rule_allow[]),accuser_secret[]),evidence_signature_2 = sign((session_id[],d_ab[],seq1[],rule_allow[]),signing_key[]),anchor_signature_2 = sign((session_id[],d_ab[],agent_a[]),signing_key[]),event_signature_2 = sign((session_id[],d_ab[],seq1[],agent_a[],previous_head_3),signing_key[]),body_2 = (session_id[],d_ab[],seq1[],agent_a[],previous_head_3)]
+RESULT inj-event(AcceptAlert(accuser_1,s_2,d_2,n_2,rule)) ==> inj-event(Accuse(accuser_1,s_2,d_2,n_2)) is true.
+-- Query inj-event(AcceptedEvent(s_2,d_2,n_2,sender_1,previous)) ==> inj-event(AnchorBinds(s_2,d_2,sender_1)) in process 1.
+Translating the process into Horn clauses...
+Completing...
+Starting query inj-event(AcceptedEvent(s_2,d_2,n_2,sender_1,previous)) ==> inj-event(AnchorBinds(s_2,d_2,sender_1))
+goal reachable: b-inj-event(AnchorBinds(session_id[],d_ab[],agent_a[]),@occ23_1) -> inj-event(AcceptedEvent(session_id[],d_ab[],seq1[],agent_a[],previous_head_3),@occ32_2)
+The hypothesis occurs strictly before the conclusion.
+Abbreviations:
+previous_head_3 = previous_head[!1 = @sid]
+@occ32_2 = @occ32_1[alert_tag_1 = accuser_mac((session_id[],d_ab[],seq1[],rule_allow[]),accuser_secret[]),evidence_signature_2 = sign((session_id[],d_ab[],seq1[],rule_allow[]),signing_key[]),anchor_signature_2 = sign((session_id[],d_ab[],agent_a[]),signing_key[]),event_signature_2 = sign((session_id[],d_ab[],seq1[],agent_a[],previous_head_3),signing_key[]),body_2 = (session_id[],d_ab[],seq1[],agent_a[],previous_head_3)]
+@occ23_1 = @occ23[alert_tag_1 = accuser_mac((session_id[],d_ab[],seq1[],rule_allow[]),accuser_secret[]),evidence_signature_2 = sign((session_id[],d_ab[],seq1[],rule_allow[]),signing_key[]),anchor_signature_2 = sign((session_id[],d_ab[],agent_a[]),signing_key[]),event_signature_2 = sign((session_id[],d_ab[],seq1[],agent_a[],previous_head_3),signing_key[]),body_2 = (session_id[],d_ab[],seq1[],agent_a[],previous_head_3)]
+RESULT inj-event(AcceptedEvent(s_2,d_2,n_2,sender_1,previous)) ==> inj-event(AnchorBinds(s_2,d_2,sender_1)) is true.
+-- Query event(AcceptAlert(accuser_1,s_2,d_2,n_2,rule)) ==> event(Freshness(s_2,d_2,n_2)) in process 1.
+Translating the process into Horn clauses...
+Completing...
+Starting query event(AcceptAlert(accuser_1,s_2,d_2,n_2,rule)) ==> event(Freshness(s_2,d_2,n_2))
+goal reachable: b-event(Freshness(session_id[],d_ab[],seq1[])) -> event(AcceptAlert(agent_b[],session_id[],d_ab[],seq1[],rule_allow[]))
+RESULT event(AcceptAlert(accuser_1,s_2,d_2,n_2,rule)) ==> event(Freshness(s_2,d_2,n_2)) is true.
+-- Query event(AcceptAlert(accuser_1,s_2,d_2,n_2,rule)) ==> event(AccuserVerified(accuser_1,s_2,d_2,n_2)) in process 1.
+Translating the process into Horn clauses...
+Completing...
+Starting query event(AcceptAlert(accuser_1,s_2,d_2,n_2,rule)) ==> event(AccuserVerified(accuser_1,s_2,d_2,n_2))
+goal reachable: b-event(AccuserVerified(agent_b[],session_id[],d_ab[],seq1[])) -> event(AcceptAlert(agent_b[],session_id[],d_ab[],seq1[],rule_allow[]))
+RESULT event(AcceptAlert(accuser_1,s_2,d_2,n_2,rule)) ==> event(AccuserVerified(accuser_1,s_2,d_2,n_2)) is true.
+-- Query event(SingleSidedRoot(s_2,d_2)) ==> event(BothSidedRoot(s_2,d_2)) in process 1.
+Translating the process into Horn clauses...
+Completing...
+Starting query event(SingleSidedRoot(s_2,d_2)) ==> event(BothSidedRoot(s_2,d_2))
+RESULT event(SingleSidedRoot(s_2,d_2)) ==> event(BothSidedRoot(s_2,d_2)) is true.
+
+--------------------------------------------------------------
+Verification summary:
+
+Query inj-event(AcceptedEvent(s_2,d_2,n_2,sender_1,previous)) ==> inj-event(HonestSend(s_2,d_2,n_2,sender_1,previous)) is true.
+
+Query event(Admit(s_2,d_2,n_2,previous)) ==> event(ChainLink(s_2,d_2,n_2,previous)) is true.
+
+Query event(AcceptAlert(accuser_1,s_2,d_2,n_2,rule)) ==> event(ValidEvent(s_2,d_2,n_2)) && event(RuleViolation(s_2,d_2,n_2,rule)) is true.
+
+Query inj-event(AcceptAlert(accuser_1,s_2,d_2,n_2,rule)) ==> inj-event(Accuse(accuser_1,s_2,d_2,n_2)) is true.
+
+Query inj-event(AcceptedEvent(s_2,d_2,n_2,sender_1,previous)) ==> inj-event(AnchorBinds(s_2,d_2,sender_1)) is true.
+
+Query event(AcceptAlert(accuser_1,s_2,d_2,n_2,rule)) ==> event(Freshness(s_2,d_2,n_2)) is true.
+
+Query event(AcceptAlert(accuser_1,s_2,d_2,n_2,rule)) ==> event(AccuserVerified(accuser_1,s_2,d_2,n_2)) is true.
+
+Query event(SingleSidedRoot(s_2,d_2)) ==> event(BothSidedRoot(s_2,d_2)) is true.
+
+--------------------------------------------------------------
+

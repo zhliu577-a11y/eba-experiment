@@ -1,0 +1,103 @@
+{
+  "all_tampering_detected": true,
+  "classes": {
+    "chain_head_rollback": {
+      "accepted_invalid": 0,
+      "decisions": {
+        "UNCONFIRMED": 1000
+      },
+      "detected": 1000,
+      "detection_rate": 1.0,
+      "reasons": {
+        "CHAIN_HEAD_ROLLBACK": 1000
+      },
+      "trials": 1000
+    },
+    "conflicting_roots": {
+      "accepted_invalid": 0,
+      "decisions": {
+        "REJECT": 1000
+      },
+      "detected": 1000,
+      "detection_rate": 1.0,
+      "reasons": {
+        "EQUIVOCATION_DETECTED": 1000
+      },
+      "trials": 1000
+    },
+    "cross_direction_replay": {
+      "accepted_invalid": 0,
+      "decisions": {
+        "UNCONFIRMED": 1000
+      },
+      "detected": 1000,
+      "detection_rate": 1.0,
+      "reasons": {
+        "EVIDENCE_UNAVAILABLE": 1000
+      },
+      "trials": 1000
+    },
+    "cross_session_replay": {
+      "accepted_invalid": 0,
+      "decisions": {
+        "UNCONFIRMED": 1000
+      },
+      "detected": 1000,
+      "detection_rate": 1.0,
+      "reasons": {
+        "EVIDENCE_UNAVAILABLE": 1000
+      },
+      "trials": 1000
+    },
+    "insertion": {
+      "accepted_invalid": 0,
+      "decisions": {
+        "UNCONFIRMED": 1000
+      },
+      "detected": 1000,
+      "detection_rate": 1.0,
+      "reasons": {
+        "EVIDENCE_UNAVAILABLE": 1000
+      },
+      "trials": 1000
+    },
+    "modification": {
+      "accepted_invalid": 0,
+      "decisions": {
+        "UNCONFIRMED": 1000
+      },
+      "detected": 1000,
+      "detection_rate": 1.0,
+      "reasons": {
+        "EVIDENCE_UNAVAILABLE": 1000
+      },
+      "trials": 1000
+    },
+    "reordering": {
+      "accepted_invalid": 0,
+      "decisions": {
+        "UNCONFIRMED": 1000
+      },
+      "detected": 1000,
+      "detection_rate": 1.0,
+      "reasons": {
+        "EVIDENCE_UNAVAILABLE": 1000
+      },
+      "trials": 1000
+    }
+  },
+  "conflicting_roots_always_typed": true,
+  "environment": {
+    "captured_at": "2026-09-22T08:17:06.211956+00:00",
+    "machine": "AMD64",
+    "platform": "Windows-10-10.0.19045-SP0",
+    "processor": "Intel64 Family 6 Model 167 Stepping 1, GenuineIntel",
+    "python": "3.13.15 (tags/v3.13.15:4061bc4, Aug  5 2026, 13:05:39) [MSC v.1944 64 bit (AMD64)]",
+    "python_executable": "E:\\文档\\论文\\.venv\\Scripts\\python.exe"
+  },
+  "experiment": "E1_evidence_integrity",
+  "profile": "full",
+  "seed_policy": "deterministic case index plus secure random session keys",
+  "title": "E1 Evidence Integrity",
+  "trials_per_class": 1000
+}

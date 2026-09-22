@@ -1,0 +1,87 @@
+{
+  "checks": [
+    {
+      "name": "jcs_fixed_vectors_cross_language",
+      "passed": true
+    },
+    {
+      "name": "signature_interop",
+      "passed": true
+    },
+    {
+      "name": "schema_required_fields",
+      "passed": true
+    },
+    {
+      "name": "verdict_and_reason_mapping",
+      "passed": true
+    },
+    {
+      "name": "duplicate_alert_deduplication",
+      "passed": true
+    },
+    {
+      "name": "out_of_order_buffering",
+      "passed": true
+    },
+    {
+      "name": "session_rotation_separates_chains",
+      "passed": true
+    },
+    {
+      "name": "garbage_collected_evidence_is_unconfirmed",
+      "passed": true
+    },
+    {
+      "name": "clock_window_boundary",
+      "passed": true
+    },
+    {
+      "name": "retraction_preserves_original_decision",
+      "passed": true
+    }
+  ],
+  "environment": {
+    "captured_at": "2026-09-22T08:16:41.942438+00:00",
+    "machine": "AMD64",
+    "platform": "Windows-10-10.0.19045-SP0",
+    "processor": "Intel64 Family 6 Model 167 Stepping 1, GenuineIntel",
+    "python": "3.13.15 (tags/v3.13.15:4061bc4, Aug  5 2026, 13:05:39) [MSC v.1944 64 bit (AMD64)]",
+    "python_executable": "E:\\文档\\论文\\.venv\\Scripts\\python.exe"
+  },
+  "experiment": "E0_consistency_interoperability",
+  "failed": 0,
+  "jcs_node": [
+    "{\"a\":1,\"b\":2}",
+    "[null,true,false]",
+    "{\"literals\":[null,true,false],\"numbers\":[333333333.3333333,1e+30,4.5,0.002,1e-27],\"string\":\"€$\\u000f\\nA'B\\\"\\\\\\\"/\"}"
+  ],
+  "jcs_python": [
+    "{\"a\":1,\"b\":2}",
+    "[null,true,false]",
+    "{\"literals\":[null,true,false],\"numbers\":[333333333.3333333,1e+30,4.5,0.002,1e-27],\"string\":\"€$\\u000f\\nA'B\\\"\\\\\\\"/\"}"
+  ],
+  "passed": 10,
+  "profile": "fixed-vectors",
+  "title": "E0 Consistency, Interoperability, and Boundary Conditions",
+  "verdict_matrix": {
+    "missing_evidence": {
+      "candidate_failures": [],
+      "decision": "UNCONFIRMED",
+      "detail": "no_valid_candidate_before_ttl",
+      "reason": "EVIDENCE_UNAVAILABLE"
+    },
+    "unknown_rule": {
+      "candidate_failures": [],
+      "decision": "REJECT",
+      "detail": "rule_version_missing",
+      "reason": "RULE_UNKNOWN"
+    },
+    "valid": {
+      "candidate_failures": [],
+      "decision": "ACCEPT",
+      "detail": "all_d9_conditions",
+      "reason": "ACCEPT"
+    }
+  }
+}

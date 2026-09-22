@@ -1,0 +1,230 @@
+{
+  "cases": {
+    "altered_copy": {
+      "expected": {
+        "decision": "REJECT",
+        "reason": "EVIDENCE_MISMATCH"
+      },
+      "expected_count": 1000,
+      "outcomes": {
+        "REJECT:EVIDENCE_MISMATCH": 1000
+      },
+      "trials": 1000,
+      "typed_reason_rate": 1.0
+    },
+    "conflicting_roots": {
+      "expected": {
+        "decision": "REJECT",
+        "reason": "EQUIVOCATION_DETECTED"
+      },
+      "expected_count": 1000,
+      "outcomes": {
+        "REJECT:EQUIVOCATION_DETECTED": 1000
+      },
+      "trials": 1000,
+      "typed_reason_rate": 1.0
+    },
+    "expired_alert": {
+      "expected": {
+        "decision": "REJECT",
+        "reason": "STALE_ALERT"
+      },
+      "expected_count": 1000,
+      "outcomes": {
+        "REJECT:STALE_ALERT": 1000
+      },
+      "trials": 1000,
+      "typed_reason_rate": 1.0
+    },
+    "forged_accuser": {
+      "expected": {
+        "decision": "REJECT",
+        "reason": "ACCUSER_SIG_INVALID"
+      },
+      "expected_count": 1000,
+      "outcomes": {
+        "REJECT:ACCUSER_SIG_INVALID": 1000
+      },
+      "trials": 1000,
+      "typed_reason_rate": 1.0
+    },
+    "forged_anchor": {
+      "expected": {
+        "decision": "REJECT",
+        "reason": "ANCHOR_INVALID"
+      },
+      "expected_count": 1000,
+      "outcomes": {
+        "REJECT:ANCHOR_INVALID": 1000
+      },
+      "trials": 1000,
+      "typed_reason_rate": 1.0
+    },
+    "forged_evidence": {
+      "expected": {
+        "decision": "UNCONFIRMED",
+        "reason": "EVIDENCE_UNAVAILABLE"
+      },
+      "expected_count": 1000,
+      "outcomes": {
+        "UNCONFIRMED:EVIDENCE_UNAVAILABLE": 1000
+      },
+      "trials": 1000,
+      "typed_reason_rate": 1.0
+    },
+    "forged_retraction": {
+      "expected": {
+        "decision": "REJECT",
+        "reason": "RETRACTION_INVALID"
+      },
+      "expected_count": 1000,
+      "outcomes": {
+        "REJECT:RETRACTION_INVALID": 1000
+      },
+      "trials": 1000,
+      "typed_reason_rate": 1.0
+    },
+    "future_time": {
+      "expected": {
+        "decision": "REJECT",
+        "reason": "TIME_WINDOW_INVALID"
+      },
+      "expected_count": 1000,
+      "outcomes": {
+        "REJECT:TIME_WINDOW_INVALID": 1000
+      },
+      "trials": 1000,
+      "typed_reason_rate": 1.0
+    },
+    "incorrect_proof": {
+      "expected": {
+        "decision": "UNCONFIRMED",
+        "reason": "PROOF_UNAVAILABLE"
+      },
+      "expected_count": 1000,
+      "outcomes": {
+        "UNCONFIRMED:PROOF_UNAVAILABLE": 1000
+      },
+      "trials": 1000,
+      "typed_reason_rate": 1.0
+    },
+    "mislabeled_rule": {
+      "expected": {
+        "decision": "REJECT",
+        "reason": "RULE_NOT_VIOLATED"
+      },
+      "expected_count": 1000,
+      "outcomes": {
+        "REJECT:RULE_NOT_VIOLATED": 1000
+      },
+      "trials": 1000,
+      "typed_reason_rate": 1.0
+    },
+    "missing_rule": {
+      "expected": {
+        "decision": "REJECT",
+        "reason": "RULE_UNKNOWN"
+      },
+      "expected_count": 1000,
+      "outcomes": {
+        "REJECT:RULE_UNKNOWN": 1000
+      },
+      "trials": 1000,
+      "typed_reason_rate": 1.0
+    },
+    "unavailable_evidence": {
+      "expected": {
+        "decision": "UNCONFIRMED",
+        "reason": "EVIDENCE_UNAVAILABLE"
+      },
+      "expected_count": 1000,
+      "outcomes": {
+        "UNCONFIRMED:EVIDENCE_UNAVAILABLE": 1000
+      },
+      "trials": 1000,
+      "typed_reason_rate": 1.0
+    },
+    "valid_control": {
+      "expected": {
+        "decision": "ACCEPT",
+        "reason": "ACCEPT"
+      },
+      "expected_count": 1000,
+      "outcomes": {
+        "ACCEPT:ACCEPT": 1000
+      },
+      "trials": 1000,
+      "typed_reason_rate": 1.0
+    }
+  },
+  "environment": {
+    "captured_at": "2026-09-22T08:18:17.227933+00:00",
+    "machine": "AMD64",
+    "platform": "Windows-10-10.0.19045-SP0",
+    "processor": "Intel64 Family 6 Model 167 Stepping 1, GenuineIntel",
+    "python": "3.13.15 (tags/v3.13.15:4061bc4, Aug  5 2026, 13:05:39) [MSC v.1944 64 bit (AMD64)]",
+    "python_executable": "E:\\文档\\论文\\.venv\\Scripts\\python.exe"
+  },
+  "experiment": "E3_acceptance_soundness",
+  "invalid_acceptances": 0,
+  "profile": "full",
+  "seed_policy": "deterministic case index plus secure random keys",
+  "sybil_pressure": {
+    "0.1": {
+      "accepted_invalid": 0,
+      "accepted_valid": 900,
+      "alerts": 1000,
+      "invalid_acceptance_rate": 0.0,
+      "invalid_alerts": 100,
+      "reasons": {
+        "invalid:EVIDENCE_MISMATCH": 100,
+        "valid:ACCEPT": 900
+      },
+      "valid_acceptance_rate": 1.0,
+      "valid_controls": 900
+    },
+    "0.5": {
+      "accepted_invalid": 0,
+      "accepted_valid": 500,
+      "alerts": 1000,
+      "invalid_acceptance_rate": 0.0,
+      "invalid_alerts": 500,
+      "reasons": {
+        "invalid:EVIDENCE_MISMATCH": 500,
+        "valid:ACCEPT": 500
+      },
+      "valid_acceptance_rate": 1.0,
+      "valid_controls": 500
+    },
+    "0.9": {
+      "accepted_invalid": 0,
+      "accepted_valid": 100,
+      "alerts": 1000,
+      "invalid_acceptance_rate": 0.0,
+      "invalid_alerts": 900,
+      "reasons": {
+        "invalid:EVIDENCE_MISMATCH": 900,
+        "valid:ACCEPT": 100
+      },
+      "valid_acceptance_rate": 1.0,
+      "valid_controls": 100
+    },
+    "1.0": {
+      "accepted_invalid": 0,
+      "accepted_valid": 0,
+      "alerts": 1000,
+      "invalid_acceptance_rate": 0.0,
+      "invalid_alerts": 1000,
+      "reasons": {
+        "invalid:EVIDENCE_MISMATCH": 1000
+      },
+      "valid_acceptance_rate": 0.0,
+      "valid_controls": 0
+    }
+  },
+  "sybil_pressure_passed": true,
+  "title": "E3 Acceptance Soundness and Framing Resistance",
+  "trials_per_attack": 1000,
+  "valid_control_acceptances": 1000,
+  "valid_control_expected": 1000
+}

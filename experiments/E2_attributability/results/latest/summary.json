@@ -1,0 +1,25 @@
+{
+  "environment": {
+    "captured_at": "2026-09-22T08:17:11.160263+00:00",
+    "machine": "AMD64",
+    "platform": "Windows-10-10.0.19045-SP0",
+    "processor": "Intel64 Family 6 Model 167 Stepping 1, GenuineIntel",
+    "python": "3.13.15 (tags/v3.13.15:4061bc4, Aug  5 2026, 13:05:39) [MSC v.1944 64 bit (AMD64)]",
+    "python_executable": "E:\\文档\\论文\\.venv\\Scripts\\python.exe"
+  },
+  "experiment": "E2_attributability",
+  "key_substitution_rejected": 1000,
+  "key_substitution_rejection_rate": 1.0,
+  "legitimate_attributable": 1000,
+  "legitimate_attribution_rate": 1.0,
+  "n1_expected_failure_observed": true,
+  "n1_shared_key_forgery_accepts": 1000,
+  "outcomes": {
+    "peer_forgery:UNCONFIRMED:EVIDENCE_UNAVAILABLE": 1000
+  },
+  "peer_forgery_rejected": 1000,
+  "peer_forgery_rejection_rate": 1.0,
+  "profile": "full",
+  "title": "E2 Attributability and Non-Repudiation",
+  "trials": 1000
+}

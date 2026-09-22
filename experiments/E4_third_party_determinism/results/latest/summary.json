@@ -1,0 +1,74 @@
+{
+  "all_verdicts_agree": true,
+  "environment": {
+    "captured_at": "2026-09-22T08:18:57.543045+00:00",
+    "machine": "AMD64",
+    "platform": "Windows-10-10.0.19045-SP0",
+    "processor": "Intel64 Family 6 Model 167 Stepping 1, GenuineIntel",
+    "python": "3.13.15 (tags/v3.13.15:4061bc4, Aug  5 2026, 13:05:39) [MSC v.1944 64 bit (AMD64)]",
+    "python_executable": "E:\\文档\\论文\\.venv\\Scripts\\python.exe"
+  },
+  "experiment": "E4_third_party_determinism",
+  "observer_isolation": "new OS subprocess per scenario trial",
+  "profile": "full",
+  "scenarios": {
+    "complete_evidence": {
+      "agreement_rate": 1.0,
+      "agreements": 30,
+      "observer": {
+        "ACCEPT:ACCEPT": 30
+      },
+      "participant": {
+        "ACCEPT:ACCEPT": 30
+      },
+      "trials": 30
+    },
+    "deterministic_mismatch": {
+      "agreement_rate": 1.0,
+      "agreements": 30,
+      "observer": {
+        "REJECT:EVIDENCE_MISMATCH": 30
+      },
+      "participant": {
+        "REJECT:EVIDENCE_MISMATCH": 30
+      },
+      "trials": 30
+    },
+    "forged_anchor": {
+      "agreement_rate": 1.0,
+      "agreements": 30,
+      "observer": {
+        "REJECT:ANCHOR_INVALID": 30
+      },
+      "participant": {
+        "REJECT:ANCHOR_INVALID": 30
+      },
+      "trials": 30
+    },
+    "incorrect_evidence": {
+      "agreement_rate": 1.0,
+      "agreements": 30,
+      "observer": {
+        "UNCONFIRMED:EVIDENCE_UNAVAILABLE": 30
+      },
+      "participant": {
+        "UNCONFIRMED:EVIDENCE_UNAVAILABLE": 30
+      },
+      "trials": 30
+    },
+    "missing_evidence": {
+      "agreement_rate": 1.0,
+      "agreements": 30,
+      "observer": {
+        "UNCONFIRMED:EVIDENCE_UNAVAILABLE": 30
+      },
+      "participant": {
+        "UNCONFIRMED:EVIDENCE_UNAVAILABLE": 30
+      },
+      "trials": 30
+    }
+  },
+  "title": "E4 Third-Party Verdict Determinism",
+  "trials_per_scenario": 30,
+  "unavailability_never_accepts": true
+}

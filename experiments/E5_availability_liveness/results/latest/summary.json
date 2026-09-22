@@ -1,0 +1,212 @@
+{
+  "all_curves_within_tolerance": true,
+  "curves_have_zero_invalid_accepts": true,
+  "environment": {
+    "captured_at": "2026-09-22T08:21:35.591703+00:00",
+    "machine": "AMD64",
+    "platform": "Windows-10-10.0.19045-SP0",
+    "processor": "Intel64 Family 6 Model 167 Stepping 1, GenuineIntel",
+    "python": "3.13.15 (tags/v3.13.15:4061bc4, Aug  5 2026, 13:05:39) [MSC v.1944 64 bit (AMD64)]",
+    "python_executable": "E:\\文档\\论文\\.venv\\Scripts\\python.exe"
+  },
+  "experiment": "E5_availability_liveness",
+  "failure_modes": {
+    "after_ttl_is_stale": true,
+    "bad_provider_does_not_override_good_provider": true,
+    "scenarios": {
+      "all_holders_offline": {
+        "candidate_failures": [],
+        "decision": "UNCONFIRMED",
+        "detail": "no_valid_candidate_before_ttl",
+        "reason": "EVIDENCE_UNAVAILABLE"
+      },
+      "available_after_ttl": {
+        "candidate_failures": [],
+        "decision": "REJECT",
+        "detail": "alert_ttl",
+        "reason": "STALE_ALERT"
+      },
+      "available_before_ttl": {
+        "candidate_failures": [],
+        "decision": "ACCEPT",
+        "detail": "all_d9_conditions",
+        "reason": "ACCEPT"
+      },
+      "malicious_provider_only": {
+        "candidate_failures": [
+          "EVIDENCE_INVALID"
+        ],
+        "decision": "UNCONFIRMED",
+        "detail": "no_valid_candidate_before_ttl",
+        "reason": "EVIDENCE_UNAVAILABLE"
+      },
+      "one_bad_one_good_provider": {
+        "candidate_failures": [],
+        "decision": "ACCEPT",
+        "detail": "all_d9_conditions",
+        "reason": "ACCEPT"
+      },
+      "retrieval_deadline_after_ttl": {
+        "candidate_failures": [],
+        "decision": "REJECT",
+        "detail": "alert_ttl",
+        "reason": "STALE_ALERT"
+      },
+      "retrieval_deadline_before_ttl": {
+        "candidate_failures": [],
+        "decision": "UNCONFIRMED",
+        "detail": "no_valid_candidate_before_ttl",
+        "reason": "EVIDENCE_UNAVAILABLE"
+      }
+    },
+    "unavailability_safe": true
+  },
+  "independent_holders": {
+    "k=1,alpha=0.1": {
+      "absolute_error": 0.004000000000000017,
+      "alpha": 0.1,
+      "empirical_success_rate": 0.104,
+      "holders": 1,
+      "invalid_accepts": 0,
+      "successes": 520,
+      "theoretical_success_rate": 0.09999999999999998,
+      "trials": 5000,
+      "typed_failures": 4480,
+      "within_tolerance": true
+    },
+    "k=1,alpha=0.5": {
+      "absolute_error": 0.011399999999999966,
+      "alpha": 0.5,
+      "empirical_success_rate": 0.5114,
+      "holders": 1,
+      "invalid_accepts": 0,
+      "successes": 2557,
+      "theoretical_success_rate": 0.5,
+      "trials": 5000,
+      "typed_failures": 2443,
+      "within_tolerance": true
+    },
+    "k=1,alpha=0.9": {
+      "absolute_error": 0.008199999999999985,
+      "alpha": 0.9,
+      "empirical_success_rate": 0.8918,
+      "holders": 1,
+      "invalid_accepts": 0,
+      "successes": 4459,
+      "theoretical_success_rate": 0.9,
+      "trials": 5000,
+      "typed_failures": 541,
+      "within_tolerance": true
+    },
+    "k=1,alpha=1.0": {
+      "absolute_error": 0.0,
+      "alpha": 1.0,
+      "empirical_success_rate": 1.0,
+      "holders": 1,
+      "invalid_accepts": 0,
+      "successes": 5000,
+      "theoretical_success_rate": 1.0,
+      "trials": 5000,
+      "typed_failures": 0,
+      "within_tolerance": true
+    },
+    "k=2,alpha=0.1": {
+      "absolute_error": 0.006200000000000067,
+      "alpha": 0.1,
+      "empirical_success_rate": 0.1962,
+      "holders": 2,
+      "invalid_accepts": 0,
+      "successes": 981,
+      "theoretical_success_rate": 0.18999999999999995,
+      "trials": 5000,
+      "typed_failures": 4019,
+      "within_tolerance": true
+    },
+    "k=2,alpha=0.5": {
+      "absolute_error": 0.0048000000000000265,
+      "alpha": 0.5,
+      "empirical_success_rate": 0.7548,
+      "holders": 2,
+      "invalid_accepts": 0,
+      "successes": 3774,
+      "theoretical_success_rate": 0.75,
+      "trials": 5000,
+      "typed_failures": 1226,
+      "within_tolerance": true
+    },
+    "k=2,alpha=0.9": {
+      "absolute_error": 0.0008000000000000229,
+      "alpha": 0.9,
+      "empirical_success_rate": 0.9892,
+      "holders": 2,
+      "invalid_accepts": 0,
+      "successes": 4946,
+      "theoretical_success_rate": 0.99,
+      "trials": 5000,
+      "typed_failures": 54,
+      "within_tolerance": true
+    },
+    "k=2,alpha=1.0": {
+      "absolute_error": 0.0,
+      "alpha": 1.0,
+      "empirical_success_rate": 1.0,
+      "holders": 2,
+      "invalid_accepts": 0,
+      "successes": 5000,
+      "theoretical_success_rate": 1.0,
+      "trials": 5000,
+      "typed_failures": 0,
+      "within_tolerance": true
+    },
+    "k=5,alpha=0.1": {
+      "absolute_error": 0.0037099999999999356,
+      "alpha": 0.1,
+      "empirical_success_rate": 0.4058,
+      "holders": 5,
+      "invalid_accepts": 0,
+      "successes": 2029,
+      "theoretical_success_rate": 0.40950999999999993,
+      "trials": 5000,
+      "typed_failures": 2971,
+      "within_tolerance": true
+    },
+    "k=5,alpha=0.5": {
+      "absolute_error": 0.0006500000000000394,
+      "alpha": 0.5,
+      "empirical_success_rate": 0.9694,
+      "holders": 5,
+      "invalid_accepts": 0,
+      "successes": 4847,
+      "theoretical_success_rate": 0.96875,
+      "trials": 5000,
+      "typed_failures": 153,
+      "within_tolerance": true
+    },
+    "k=5,alpha=0.9": {
+      "absolute_error": 9.99999999995449e-06,
+      "alpha": 0.9,
+      "empirical_success_rate": 1.0,
+      "holders": 5,
+      "invalid_accepts": 0,
+      "successes": 5000,
+      "theoretical_success_rate": 0.99999,
+      "trials": 5000,
+      "typed_failures": 0,
+      "within_tolerance": true
+    },
+    "k=5,alpha=1.0": {
+      "absolute_error": 0.0,
+      "alpha": 1.0,
+      "empirical_success_rate": 1.0,
+      "holders": 5,
+      "invalid_accepts": 0,
+      "successes": 5000,
+      "theoretical_success_rate": 1.0,
+      "trials": 5000,
+      "typed_failures": 0,
+      "within_tolerance": true
+    }
+  },
+  "profile": "full",
+  "title": "E5 Availability and Liveness"
+}

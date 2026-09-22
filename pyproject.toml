@@ -1,0 +1,12 @@
+[project]
+name = "eba-experiments"
+version = "0.1.0"
+description = "Reproducible experiments for Evidence-Backed Accusation in A2A."
+requires-python = ">=3.11"
+dependencies = [
+    "cryptography>=42",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"

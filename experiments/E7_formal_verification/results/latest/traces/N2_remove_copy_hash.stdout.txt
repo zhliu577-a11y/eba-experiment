@@ -1,0 +1,353 @@
+Process 0 (that is, the initial process):
+{1}new signing_key: skey;
+{2}let public_key: pkey = pk(signing_key) in
+(
+    {3}!
+    {4}let signing_key_1: skey = signing_key in
+    {5}new previous_head: bitstring;
+    {6}let body: bitstring = (session_id,d_ab,seq1,agent_a,previous_head) in
+    {7}let event_signature: signature = sign(body,signing_key_1) in
+    {8}let anchor_signature: signature = sign((session_id,d_ab,agent_a),signing_key_1) in
+    {9}let evidence_signature: signature = sign((session_id,d_ab,seq1,rule_allow),signing_key_1) in
+    {10}event HonestSend(session_id,d_ab,seq1,agent_a,previous_head);
+    {11}event ChainLink(session_id,d_ab,seq1,previous_head);
+    {12}out(carrier, (body,event_signature,anchor_signature,evidence_signature))
+) | (
+    {13}!
+    {14}in(carrier, (body_1: bitstring,event_signature_1: signature,anchor_signature_1: signature,evidence_signature_1: signature));
+    {15}let (s: bitstring,d: bitstring,n: bitstring,sender_name: bitstring,previous_head_1: bitstring) = body_1 in
+    {16}let alert_tag: mac_code = accuser_mac((s,d,n,rule_allow),accuser_secret) in
+    {17}out(carrier, (body_1,event_signature_1,anchor_signature_1,evidence_signature_1,alert_tag))
+) | (
+    {18}in(carrier, (body_2: bitstring,event_signature_2: signature,anchor_signature_2: signature,evidence_signature_2: signature,alert_tag_1: mac_code));
+    {19}if (eba_checksig(event_signature_2,public_key) = body_2) then
+    {20}let (s_1: bitstring,d_1: bitstring,n_1: bitstring,sender_name_1: bitstring,previous_head_2: bitstring) = body_2 in
+    (
+        {21}event Admit(s_1,d_1,n_1,previous_head_2);
+        {22}if (eba_checksig(anchor_signature_2,public_key) = (s_1,d_1,sender_name_1)) then
+        (
+            {23}event AnchorBinds(s_1,d_1,sender_name_1);
+            {24}event NoOp(session_id);
+            {25}event RuleViolation(s_1,d_1,n_1,rule_allow);
+            {26}event Freshness(s_1,d_1,n_1);
+            {27}event BothSidedRoot(s_1,d_1);
+            {28}if (alert_tag_1 = accuser_mac((s_1,d_1,n_1,rule_allow),accuser_secret)) then
+                {29}event AccuserVerified(agent_b,s_1,d_1,n_1);
+                {30}event Accuse(agent_b,s_1,d_1,n_1);
+                {31}event AcceptedEvent(s_1,d_1,n_1,sender_name_1,previous_head_2);
+                {32}event AcceptAlert(agent_b,s_1,d_1,n_1,rule_allow)
+            else
+                {33}event NoOp(session_id)
+        )
+        else
+            {34}event NoOp(session_id)
+    )
+    else
+        {35}event NoOp(session_id)
+)
+
+File "E:\文档\论文\experiments\E7_formal_verification\results\latest\models\N2_remove_copy_hash.pv", line 43, characters 49-54:
+Warning: identifier sender rebound.
+File "E:\文档\论文\experiments\E7_formal_verification\results\latest\models\N2_remove_copy_hash.pv", line 52, characters 7-13:
+Warning: identifier accuser rebound.
+File "E:\文档\论文\experiments\E7_formal_verification\results\latest\models\N2_remove_copy_hash.pv", line 56, characters 7-13:
+Warning: identifier accuser rebound.
+File "E:\文档\论文\experiments\E7_formal_verification\results\latest\models\N2_remove_copy_hash.pv", line 60, characters 49-54:
+Warning: identifier sender rebound.
+File "E:\文档\论文\experiments\E7_formal_verification\results\latest\models\N2_remove_copy_hash.pv", line 65, characters 7-13:
+Warning: identifier accuser rebound.
+File "E:\文档\论文\experiments\E7_formal_verification\results\latest\models\N2_remove_copy_hash.pv", line 69, characters 7-13:
+Warning: identifier accuser rebound.
+--  Process 1 (that is, process 0, with let moved downwards):
+{1}new signing_key: skey;
+(
+    {3}!
+    {5}new previous_head: bitstring;
+    {10}event HonestSend(session_id,d_ab,seq1,agent_a,previous_head);
+    {11}event ChainLink(session_id,d_ab,seq1,previous_head);
+    {4}let signing_key_1: skey = signing_key in
+    {9}let evidence_signature: signature = sign((session_id,d_ab,seq1,rule_allow),signing_key_1) in
+    {8}let anchor_signature: signature = sign((session_id,d_ab,agent_a),signing_key_1) in
+    {6}let body: bitstring = (session_id,d_ab,seq1,agent_a,previous_head) in
+    {7}let event_signature: signature = sign(body,signing_key_1) in
+    {12}out(carrier, (body,event_signature,anchor_signature,evidence_signature))
+) | (
+    {13}!
+    {14}in(carrier, (body_1: bitstring,event_signature_1: signature,anchor_signature_1: signature,evidence_signature_1: signature));
+    {15}let (s: bitstring,d: bitstring,n: bitstring,sender_name: bitstring,previous_head_1: bitstring) = body_1 in
+    {16}let alert_tag: mac_code = accuser_mac((s,d,n,rule_allow),accuser_secret) in
+    {17}out(carrier, (body_1,event_signature_1,anchor_signature_1,evidence_signature_1,alert_tag))
+) | (
+    {18}in(carrier, (body_2: bitstring,event_signature_2: signature,anchor_signature_2: signature,evidence_signature_2: signature,alert_tag_1: mac_code));
+    {2}let public_key: pkey = pk(signing_key) in
+    {19}if (eba_checksig(event_signature_2,public_key) = body_2) then
+    {20}let (s_1: bitstring,d_1: bitstring,n_1: bitstring,sender_name_1: bitstring,previous_head_2: bitstring) = body_2 in
+    (
+        {21}event Admit(s_1,d_1,n_1,previous_head_2);
+        {22}if (eba_checksig(anchor_signature_2,public_key) = (s_1,d_1,sender_name_1)) then
+        (
+            {23}event AnchorBinds(s_1,d_1,sender_name_1);
+            {24}event NoOp(session_id);
+            {25}event RuleViolation(s_1,d_1,n_1,rule_allow);
+            {26}event Freshness(s_1,d_1,n_1);
+            {27}event BothSidedRoot(s_1,d_1);
+            {28}if (alert_tag_1 = accuser_mac((s_1,d_1,n_1,rule_allow),accuser_secret)) then
+                {29}event AccuserVerified(agent_b,s_1,d_1,n_1);
+                {30}event Accuse(agent_b,s_1,d_1,n_1);
+                {31}event AcceptedEvent(s_1,d_1,n_1,sender_name_1,previous_head_2);
+                {32}event AcceptAlert(agent_b,s_1,d_1,n_1,rule_allow)
+            else
+                {33}event NoOp(session_id)
+        )
+        else
+            {34}event NoOp(session_id)
+    )
+    else
+        {35}event NoOp(session_id)
+)
+
+-- Query inj-event(AcceptedEvent(s_2,d_2,n_2,sender_1,previous)) ==> inj-event(HonestSend(s_2,d_2,n_2,sender_1,previous)) in process 1.
+Translating the process into Horn clauses...
+Completing...
+Starting query inj-event(AcceptedEvent(s_2,d_2,n_2,sender_1,previous)) ==> inj-event(HonestSend(s_2,d_2,n_2,sender_1,previous))
+goal reachable: b-inj-event(HonestSend(session_id[],d_ab[],seq1[],agent_a[],previous_head_3),@occ10_1) && attacker(evidence_signature_3) -> inj-event(AcceptedEvent(session_id[],d_ab[],seq1[],agent_a[],previous_head_3),@occ31_1)
+The 1st hypothesis occurs strictly before the conclusion.
+The 2nd hypothesis occurs before the conclusion.
+Abbreviations:
+previous_head_3 = previous_head[!1 = @sid]
+@occ31_1 = @occ31[alert_tag_1 = accuser_mac((session_id[],d_ab[],seq1[],rule_allow[]),accuser_secret[]),evidence_signature_2 = evidence_signature_3,anchor_signature_2 = sign((session_id[],d_ab[],agent_a[]),signing_key[]),event_signature_2 = sign((session_id[],d_ab[],seq1[],agent_a[],previous_head_3),signing_key[]),body_2 = (session_id[],d_ab[],seq1[],agent_a[],previous_head_3)]
+@occ10_1 = @occ10[!1 = @sid]
+RESULT inj-event(AcceptedEvent(s_2,d_2,n_2,sender_1,previous)) ==> inj-event(HonestSend(s_2,d_2,n_2,sender_1,previous)) is true.
+-- Query event(Admit(s_2,d_2,n_2,previous)) ==> event(ChainLink(s_2,d_2,n_2,previous)) in process 1.
+Translating the process into Horn clauses...
+Completing...
+Starting query event(Admit(s_2,d_2,n_2,previous)) ==> event(ChainLink(s_2,d_2,n_2,previous))
+goal reachable: b-event(ChainLink(session_id[],d_ab[],seq1[],previous_head_3)) -> event(Admit(session_id[],d_ab[],seq1[],previous_head_3))
+Abbreviations:
+previous_head_3 = previous_head[!1 = @sid]
+RESULT event(Admit(s_2,d_2,n_2,previous)) ==> event(ChainLink(s_2,d_2,n_2,previous)) is true.
+-- Query event(AcceptAlert(accuser_1,s_2,d_2,n_2,rule)) ==> event(ValidEvent(s_2,d_2,n_2)) && event(RuleViolation(s_2,d_2,n_2,rule)) in process 1.
+Translating the process into Horn clauses...
+Completing...
+Starting query event(AcceptAlert(accuser_1,s_2,d_2,n_2,rule)) ==> event(ValidEvent(s_2,d_2,n_2)) && event(RuleViolation(s_2,d_2,n_2,rule))
+goal reachable: b-event(RuleViolation(session_id[],d_ab[],seq1[],rule_allow[])) -> event(AcceptAlert(agent_b[],session_id[],d_ab[],seq1[],rule_allow[]))
+
+Derivation:
+Abbreviations:
+previous_head_3 = previous_head[!1 = @sid]
+previous_head_4 = previous_head[!1 = @sid_1]
+
+1. The attacker has some term evidence_signature_3.
+attacker(evidence_signature_3).
+
+2. The attacker has some term anchor_signature_3.
+attacker(anchor_signature_3).
+
+3. The attacker has some term event_signature_3.
+attacker(event_signature_3).
+
+4. The attacker has some term previous_head_5.
+attacker(previous_head_5).
+
+5. The attacker has some term sender_name_2.
+attacker(sender_name_2).
+
+6. The attacker initially knows seq1[].
+attacker(seq1[]).
+
+7. The attacker initially knows d_ab[].
+attacker(d_ab[]).
+
+8. The attacker initially knows session_id[].
+attacker(session_id[]).
+
+9. By 8, the attacker may know session_id[].
+By 7, the attacker may know d_ab[].
+By 6, the attacker may know seq1[].
+By 5, the attacker may know sender_name_2.
+By 4, the attacker may know previous_head_5.
+Using the function 5-tuple the attacker may obtain (session_id[],d_ab[],seq1[],sender_name_2,previous_head_5).
+attacker((session_id[],d_ab[],seq1[],sender_name_2,previous_head_5)).
+
+10. By 9, the attacker may know (session_id[],d_ab[],seq1[],sender_name_2,previous_head_5).
+By 3, the attacker may know event_signature_3.
+By 2, the attacker may know anchor_signature_3.
+By 1, the attacker may know evidence_signature_3.
+Using the function 4-tuple the attacker may obtain ((session_id[],d_ab[],seq1[],sender_name_2,previous_head_5),event_signature_3,anchor_signature_3,evidence_signature_3).
+attacker(((session_id[],d_ab[],seq1[],sender_name_2,previous_head_5),event_signature_3,anchor_signature_3,evidence_signature_3)).
+
+11. The message ((session_id[],d_ab[],seq1[],sender_name_2,previous_head_5),event_signature_3,anchor_signature_3,evidence_signature_3) that the attacker may have by 10 may be received at input {14}.
+So the message ((session_id[],d_ab[],seq1[],sender_name_2,previous_head_5),event_signature_3,anchor_signature_3,evidence_signature_3,accuser_mac((session_id[],d_ab[],seq1[],rule_allow[]),accuser_secret[])) may be sent to the attacker at output {17}.
+attacker(((session_id[],d_ab[],seq1[],sender_name_2,previous_head_5),event_signature_3,anchor_signature_3,evidence_signature_3,accuser_mac((session_id[],d_ab[],seq1[],rule_allow[]),accuser_secret[]))).
+
+12. By 11, the attacker may know ((session_id[],d_ab[],seq1[],sender_name_2,previous_head_5),event_signature_3,anchor_signature_3,evidence_signature_3,accuser_mac((session_id[],d_ab[],seq1[],rule_allow[]),accuser_secret[])).
+Using the function 5-proj-5-tuple the attacker may obtain accuser_mac((session_id[],d_ab[],seq1[],rule_allow[]),accuser_secret[]).
+attacker(accuser_mac((session_id[],d_ab[],seq1[],rule_allow[]),accuser_secret[])).
+
+13. The attacker has some term evidence_signature_4.
+attacker(evidence_signature_4).
+
+14. The message ((session_id[],d_ab[],seq1[],agent_a[],previous_head_4),sign((session_id[],d_ab[],seq1[],agent_a[],previous_head_4),signing_key[]),sign((session_id[],d_ab[],agent_a[]),signing_key[]),sign((session_id[],d_ab[],seq1[],rule_allow[]),signing_key[])) may be sent to the attacker at output {12}.
+attacker(((session_id[],d_ab[],seq1[],agent_a[],previous_head_4),sign((session_id[],d_ab[],seq1[],agent_a[],previous_head_4),signing_key[]),sign((session_id[],d_ab[],agent_a[]),signing_key[]),sign((session_id[],d_ab[],seq1[],rule_allow[]),signing_key[]))).
+
+15. By 14, the attacker may know ((session_id[],d_ab[],seq1[],agent_a[],previous_head_4),sign((session_id[],d_ab[],seq1[],agent_a[],previous_head_4),signing_key[]),sign((session_id[],d_ab[],agent_a[]),signing_key[]),sign((session_id[],d_ab[],seq1[],rule_allow[]),signing_key[])).
+Using the function 3-proj-4-tuple the attacker may obtain sign((session_id[],d_ab[],agent_a[]),signing_key[]).
+attacker(sign((session_id[],d_ab[],agent_a[]),signing_key[])).
+
+16. The message ((session_id[],d_ab[],seq1[],agent_a[],previous_head_3),sign((session_id[],d_ab[],seq1[],agent_a[],previous_head_3),signing_key[]),sign((session_id[],d_ab[],agent_a[]),signing_key[]),sign((session_id[],d_ab[],seq1[],rule_allow[]),signing_key[])) may be sent to the attacker at output {12}.
+attacker(((session_id[],d_ab[],seq1[],agent_a[],previous_head_3),sign((session_id[],d_ab[],seq1[],agent_a[],previous_head_3),signing_key[]),sign((session_id[],d_ab[],agent_a[]),signing_key[]),sign((session_id[],d_ab[],seq1[],rule_allow[]),signing_key[]))).
+
+17. By 16, the attacker may know ((session_id[],d_ab[],seq1[],agent_a[],previous_head_3),sign((session_id[],d_ab[],seq1[],agent_a[],previous_head_3),signing_key[]),sign((session_id[],d_ab[],agent_a[]),signing_key[]),sign((session_id[],d_ab[],seq1[],rule_allow[]),signing_key[])).
+Using the function 2-proj-4-tuple the attacker may obtain sign((session_id[],d_ab[],seq1[],agent_a[],previous_head_3),signing_key[]).
+attacker(sign((session_id[],d_ab[],seq1[],agent_a[],previous_head_3),signing_key[])).
+
+18. By 16, the attacker may know ((session_id[],d_ab[],seq1[],agent_a[],previous_head_3),sign((session_id[],d_ab[],seq1[],agent_a[],previous_head_3),signing_key[]),sign((session_id[],d_ab[],agent_a[]),signing_key[]),sign((session_id[],d_ab[],seq1[],rule_allow[]),signing_key[])).
+Using the function 1-proj-4-tuple the attacker may obtain (session_id[],d_ab[],seq1[],agent_a[],previous_head_3).
+attacker((session_id[],d_ab[],seq1[],agent_a[],previous_head_3)).
+
+19. By 18, the attacker may know (session_id[],d_ab[],seq1[],agent_a[],previous_head_3).
+Using the function 5-proj-5-tuple the attacker may obtain previous_head_3.
+attacker(previous_head_3).
+
+20. The attacker initially knows agent_a[].
+attacker(agent_a[]).
+
+21. By 8, the attacker may know session_id[].
+By 7, the attacker may know d_ab[].
+By 6, the attacker may know seq1[].
+By 20, the attacker may know agent_a[].
+By 19, the attacker may know previous_head_3.
+Using the function 5-tuple the attacker may obtain (session_id[],d_ab[],seq1[],agent_a[],previous_head_3).
+attacker((session_id[],d_ab[],seq1[],agent_a[],previous_head_3)).
+
+22. By 21, the attacker may know (session_id[],d_ab[],seq1[],agent_a[],previous_head_3).
+By 17, the attacker may know sign((session_id[],d_ab[],seq1[],agent_a[],previous_head_3),signing_key[]).
+By 15, the attacker may know sign((session_id[],d_ab[],agent_a[]),signing_key[]).
+By 13, the attacker may know evidence_signature_4.
+By 12, the attacker may know accuser_mac((session_id[],d_ab[],seq1[],rule_allow[]),accuser_secret[]).
+Using the function 5-tuple the attacker may obtain ((session_id[],d_ab[],seq1[],agent_a[],previous_head_3),sign((session_id[],d_ab[],seq1[],agent_a[],previous_head_3),signing_key[]),sign((session_id[],d_ab[],agent_a[]),signing_key[]),evidence_signature_4,accuser_mac((session_id[],d_ab[],seq1[],rule_allow[]),accuser_secret[])).
+attacker(((session_id[],d_ab[],seq1[],agent_a[],previous_head_3),sign((session_id[],d_ab[],seq1[],agent_a[],previous_head_3),signing_key[]),sign((session_id[],d_ab[],agent_a[]),signing_key[]),evidence_signature_4,accuser_mac((session_id[],d_ab[],seq1[],rule_allow[]),accuser_secret[]))).
+
+23. The message ((session_id[],d_ab[],seq1[],agent_a[],previous_head_3),sign((session_id[],d_ab[],seq1[],agent_a[],previous_head_3),signing_key[]),sign((session_id[],d_ab[],agent_a[]),signing_key[]),evidence_signature_4,accuser_mac((session_id[],d_ab[],seq1[],rule_allow[]),accuser_secret[])) that the attacker may have by 22 may be received at input {18}.
+The event RuleViolation(session_id[],d_ab[],seq1[],rule_allow[]) may be executed at {25}.
+So event AcceptAlert(agent_b[],session_id[],d_ab[],seq1[],rule_allow[]) may be executed at {32}.
+event(AcceptAlert(agent_b[],session_id[],d_ab[],seq1[],rule_allow[])).
+
+24. By 23, event(AcceptAlert(agent_b[],session_id[],d_ab[],seq1[],rule_allow[])).
+The goal is reached, represented in the following fact:
+event(AcceptAlert(agent_b[],session_id[],d_ab[],seq1[],rule_allow[])).
+
+
+A more detailed output of the traces is available with
+  set traceDisplay = long.
+
+new signing_key: skey creating signing_key_2 at {1}
+
+new previous_head: bitstring creating previous_head_6 at {5} in copy a
+
+event HonestSend(session_id,d_ab,seq1,agent_a,previous_head_6) at {10} in copy a
+
+event ChainLink(session_id,d_ab,seq1,previous_head_6) at {11} in copy a
+
+out(carrier, ((~M,~M_1,~M_2,~M_3,~M_4),~M_5,~M_6,~M_7)) with ~M = session_id, ~M_1 = d_ab, ~M_2 = seq1, ~M_3 = agent_a, ~M_4 = previous_head_6, ~M_5 = sign((session_id,d_ab,seq1,agent_a,previous_head_6),signing_key_2), ~M_6 = sign((session_id,d_ab,agent_a),signing_key_2), ~M_7 = sign((session_id,d_ab,seq1,rule_allow),signing_key_2) at {12} in copy a
+
+new previous_head: bitstring creating previous_head_7 at {5} in copy a_1
+
+event HonestSend(session_id,d_ab,seq1,agent_a,previous_head_7) at {10} in copy a_1
+
+event ChainLink(session_id,d_ab,seq1,previous_head_7) at {11} in copy a_1
+
+out(carrier, ((~M_8,~M_9,~M_10,~M_11,~M_12),~M_13,~M_14,~M_15)) with ~M_8 = session_id, ~M_9 = d_ab, ~M_10 = seq1, ~M_11 = agent_a, ~M_12 = previous_head_7, ~M_13 = sign((session_id,d_ab,seq1,agent_a,previous_head_7),signing_key_2), ~M_14 = sign((session_id,d_ab,agent_a),signing_key_2), ~M_15 = sign((session_id,d_ab,seq1,rule_allow),signing_key_2) at {12} in copy a_1
+
+in(carrier, ((session_id,d_ab,seq1,a_2,a_3),a_4,a_5,a_6)) at {14} in copy a_7
+
+out(carrier, ((~M_16,~M_17,~M_18,~M_19,~M_20),~M_21,~M_22,~M_23,~M_24)) with ~M_16 = session_id, ~M_17 = d_ab, ~M_18 = seq1, ~M_19 = a_2, ~M_20 = a_3, ~M_21 = a_4, ~M_22 = a_5, ~M_23 = a_6, ~M_24 = accuser_mac((session_id,d_ab,seq1,rule_allow),accuser_secret) at {17} in copy a_7
+
+in(carrier, ((session_id,d_ab,seq1,agent_a,~M_12),~M_13,~M_6,a_8,~M_24)) with ~M_12 = previous_head_7, ~M_13 = sign((session_id,d_ab,seq1,agent_a,previous_head_7),signing_key_2), ~M_6 = sign((session_id,d_ab,agent_a),signing_key_2), ~M_24 = accuser_mac((session_id,d_ab,seq1,rule_allow),accuser_secret) at {18}
+
+event Admit(session_id,d_ab,seq1,previous_head_7) at {21}
+
+event AnchorBinds(session_id,d_ab,agent_a) at {23}
+
+event NoOp(session_id) at {24}
+
+event RuleViolation(session_id,d_ab,seq1,rule_allow) at {25}
+
+event Freshness(session_id,d_ab,seq1) at {26}
+
+event BothSidedRoot(session_id,d_ab) at {27}
+
+event AccuserVerified(agent_b,session_id,d_ab,seq1) at {29}
+
+event Accuse(agent_b,session_id,d_ab,seq1) at {30}
+
+event AcceptedEvent(session_id,d_ab,seq1,agent_a,previous_head_7) at {31}
+
+event AcceptAlert(agent_b,session_id,d_ab,seq1,rule_allow) at {32} (goal)
+
+The event AcceptAlert(agent_b,session_id,d_ab,seq1,rule_allow) is executed at {32}.
+A trace has been found.
+RESULT event(AcceptAlert(accuser_1,s_2,d_2,n_2,rule)) ==> event(ValidEvent(s_2,d_2,n_2)) && event(RuleViolation(s_2,d_2,n_2,rule)) is false.
+-- Query inj-event(AcceptAlert(accuser_1,s_2,d_2,n_2,rule)) ==> inj-event(Accuse(accuser_1,s_2,d_2,n_2)) in process 1.
+Translating the process into Horn clauses...
+Completing...
+Starting query inj-event(AcceptAlert(accuser_1,s_2,d_2,n_2,rule)) ==> inj-event(Accuse(accuser_1,s_2,d_2,n_2))
+goal reachable: b-inj-event(Accuse(agent_b[],session_id[],d_ab[],seq1[]),@occ30_1) && attacker(evidence_signature_3) -> inj-event(AcceptAlert(agent_b[],session_id[],d_ab[],seq1[],rule_allow[]),@occ32_1)
+The 1st hypothesis occurs strictly before the conclusion.
+The 2nd hypothesis occurs before the conclusion.
+Abbreviations:
+previous_head_3 = previous_head[!1 = @sid]
+@occ32_1 = @occ32[alert_tag_1 = accuser_mac((session_id[],d_ab[],seq1[],rule_allow[]),accuser_secret[]),evidence_signature_2 = evidence_signature_3,anchor_signature_2 = sign((session_id[],d_ab[],agent_a[]),signing_key[]),event_signature_2 = sign((session_id[],d_ab[],seq1[],agent_a[],previous_head_3),signing_key[]),body_2 = (session_id[],d_ab[],seq1[],agent_a[],previous_head_3)]
+@occ30_1 = @occ30[alert_tag_1 = accuser_mac((session_id[],d_ab[],seq1[],rule_allow[]),accuser_secret[]),evidence_signature_2 = evidence_signature_3,anchor_signature_2 = sign((session_id[],d_ab[],agent_a[]),signing_key[]),event_signature_2 = sign((session_id[],d_ab[],seq1[],agent_a[],previous_head_3),signing_key[]),body_2 = (session_id[],d_ab[],seq1[],agent_a[],previous_head_3)]
+RESULT inj-event(AcceptAlert(accuser_1,s_2,d_2,n_2,rule)) ==> inj-event(Accuse(accuser_1,s_2,d_2,n_2)) is true.
+-- Query inj-event(AcceptedEvent(s_2,d_2,n_2,sender_1,previous)) ==> inj-event(AnchorBinds(s_2,d_2,sender_1)) in process 1.
+Translating the process into Horn clauses...
+Completing...
+Starting query inj-event(AcceptedEvent(s_2,d_2,n_2,sender_1,previous)) ==> inj-event(AnchorBinds(s_2,d_2,sender_1))
+goal reachable: b-inj-event(AnchorBinds(session_id[],d_ab[],agent_a[]),@occ23_1) && attacker(evidence_signature_3) -> inj-event(AcceptedEvent(session_id[],d_ab[],seq1[],agent_a[],previous_head_3),@occ31_2)
+The 1st hypothesis occurs strictly before the conclusion.
+The 2nd hypothesis occurs before the conclusion.
+Abbreviations:
+previous_head_3 = previous_head[!1 = @sid]
+@occ31_2 = @occ31_1[alert_tag_1 = accuser_mac((session_id[],d_ab[],seq1[],rule_allow[]),accuser_secret[]),evidence_signature_2 = evidence_signature_3,anchor_signature_2 = sign((session_id[],d_ab[],agent_a[]),signing_key[]),event_signature_2 = sign((session_id[],d_ab[],seq1[],agent_a[],previous_head_3),signing_key[]),body_2 = (session_id[],d_ab[],seq1[],agent_a[],previous_head_3)]
+@occ23_1 = @occ23[alert_tag_1 = accuser_mac((session_id[],d_ab[],seq1[],rule_allow[]),accuser_secret[]),evidence_signature_2 = evidence_signature_3,anchor_signature_2 = sign((session_id[],d_ab[],agent_a[]),signing_key[]),event_signature_2 = sign((session_id[],d_ab[],seq1[],agent_a[],previous_head_3),signing_key[]),body_2 = (session_id[],d_ab[],seq1[],agent_a[],previous_head_3)]
+RESULT inj-event(AcceptedEvent(s_2,d_2,n_2,sender_1,previous)) ==> inj-event(AnchorBinds(s_2,d_2,sender_1)) is true.
+-- Query event(AcceptAlert(accuser_1,s_2,d_2,n_2,rule)) ==> event(Freshness(s_2,d_2,n_2)) in process 1.
+Translating the process into Horn clauses...
+Completing...
+Starting query event(AcceptAlert(accuser_1,s_2,d_2,n_2,rule)) ==> event(Freshness(s_2,d_2,n_2))
+goal reachable: b-event(Freshness(session_id[],d_ab[],seq1[])) -> event(AcceptAlert(agent_b[],session_id[],d_ab[],seq1[],rule_allow[]))
+RESULT event(AcceptAlert(accuser_1,s_2,d_2,n_2,rule)) ==> event(Freshness(s_2,d_2,n_2)) is true.
+-- Query event(AcceptAlert(accuser_1,s_2,d_2,n_2,rule)) ==> event(AccuserVerified(accuser_1,s_2,d_2,n_2)) in process 1.
+Translating the process into Horn clauses...
+Completing...
+Starting query event(AcceptAlert(accuser_1,s_2,d_2,n_2,rule)) ==> event(AccuserVerified(accuser_1,s_2,d_2,n_2))
+goal reachable: b-event(AccuserVerified(agent_b[],session_id[],d_ab[],seq1[])) -> event(AcceptAlert(agent_b[],session_id[],d_ab[],seq1[],rule_allow[]))
+RESULT event(AcceptAlert(accuser_1,s_2,d_2,n_2,rule)) ==> event(AccuserVerified(accuser_1,s_2,d_2,n_2)) is true.
+-- Query event(SingleSidedRoot(s_2,d_2)) ==> event(BothSidedRoot(s_2,d_2)) in process 1.
+Translating the process into Horn clauses...
+Completing...
+Starting query event(SingleSidedRoot(s_2,d_2)) ==> event(BothSidedRoot(s_2,d_2))
+RESULT event(SingleSidedRoot(s_2,d_2)) ==> event(BothSidedRoot(s_2,d_2)) is true.
+
+--------------------------------------------------------------
+Verification summary:
+
+Query inj-event(AcceptedEvent(s_2,d_2,n_2,sender_1,previous)) ==> inj-event(HonestSend(s_2,d_2,n_2,sender_1,previous)) is true.
+
+Query event(Admit(s_2,d_2,n_2,previous)) ==> event(ChainLink(s_2,d_2,n_2,previous)) is true.
+
+Query event(AcceptAlert(accuser_1,s_2,d_2,n_2,rule)) ==> event(ValidEvent(s_2,d_2,n_2)) && event(RuleViolation(s_2,d_2,n_2,rule)) is false.
+
+Query inj-event(AcceptAlert(accuser_1,s_2,d_2,n_2,rule)) ==> inj-event(Accuse(accuser_1,s_2,d_2,n_2)) is true.
+
+Query inj-event(AcceptedEvent(s_2,d_2,n_2,sender_1,previous)) ==> inj-event(AnchorBinds(s_2,d_2,sender_1)) is true.
+
+Query event(AcceptAlert(accuser_1,s_2,d_2,n_2,rule)) ==> event(Freshness(s_2,d_2,n_2)) is true.
+
+Query event(AcceptAlert(accuser_1,s_2,d_2,n_2,rule)) ==> event(AccuserVerified(accuser_1,s_2,d_2,n_2)) is true.
+
+Query event(SingleSidedRoot(s_2,d_2)) ==> event(BothSidedRoot(s_2,d_2)) is true.
+
+--------------------------------------------------------------
+

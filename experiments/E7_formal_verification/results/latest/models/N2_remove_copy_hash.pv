@@ -1,0 +1,180 @@
+(* NEGATIVE MODEL N2_remove_copy_hash: expected failure in R3 *)
+(* Minimal ProVerif model of the EBA message layer.
+   Merkle proofs and TEE quotes are abstracted as unforgeable signed evidence.
+   The model checks the paper's authentication, chain, evidence, accuser,
+   anchor-binding, freshness, and two-sided-root conditions. *)
+
+free carrier: channel.
+free session_id: bitstring.
+free d_ab: bitstring.
+free seq1: bitstring.
+free rule_allow: bitstring.
+free agent_a: bitstring.
+free agent_b: bitstring.
+free accuser_secret: bitstring [private].
+
+type skey.
+type pkey.
+type signature.
+type mac_code.
+
+fun pk(skey): pkey.
+fun sign(bitstring, skey): signature.
+reduc forall message: bitstring, key: skey;
+  eba_checksig(sign(message, key), pk(key)) = message.
+
+fun accuser_mac(bitstring, bitstring): mac_code [private].
+
+event HonestSend(bitstring, bitstring, bitstring, bitstring, bitstring).
+event AnchorBinds(bitstring, bitstring, bitstring).
+event ChainLink(bitstring, bitstring, bitstring, bitstring).
+event Admit(bitstring, bitstring, bitstring, bitstring).
+event ValidEvent(bitstring, bitstring, bitstring).
+event RuleViolation(bitstring, bitstring, bitstring, bitstring).
+event Accuse(bitstring, bitstring, bitstring, bitstring).
+event AcceptAlert(bitstring, bitstring, bitstring, bitstring, bitstring).
+event AcceptedEvent(bitstring, bitstring, bitstring, bitstring, bitstring).
+event Freshness(bitstring, bitstring, bitstring).
+event AccuserVerified(bitstring, bitstring, bitstring, bitstring).
+event SingleSidedRoot(bitstring, bitstring).
+event BothSidedRoot(bitstring, bitstring).
+event NoOp(bitstring).
+
+query s: bitstring, d: bitstring, n: bitstring, sender: bitstring,
+      previous: bitstring;
+  inj-event(AcceptedEvent(s, d, n, sender, previous))
+  ==> inj-event(HonestSend(s, d, n, sender, previous)).
+
+query s: bitstring, d: bitstring, n: bitstring, previous: bitstring;
+  event(Admit(s, d, n, previous)) ==>
+  event(ChainLink(s, d, n, previous)).
+
+query accuser: bitstring, s: bitstring, d: bitstring, n: bitstring, rule: bitstring;
+  event(AcceptAlert(accuser, s, d, n, rule)) ==>
+  event(ValidEvent(s, d, n)) && event(RuleViolation(s, d, n, rule)).
+
+query accuser: bitstring, s: bitstring, d: bitstring, n: bitstring, rule: bitstring;
+  inj-event(AcceptAlert(accuser, s, d, n, rule)) ==>
+  inj-event(Accuse(accuser, s, d, n)).
+
+query s: bitstring, d: bitstring, n: bitstring, sender: bitstring,
+      previous: bitstring;
+  inj-event(AcceptedEvent(s, d, n, sender, previous)) ==>
+  inj-event(AnchorBinds(s, d, sender)).
+
+query accuser: bitstring, s: bitstring, d: bitstring, n: bitstring, rule: bitstring;
+  event(AcceptAlert(accuser, s, d, n, rule)) ==>
+  event(Freshness(s, d, n)).
+
+query accuser: bitstring, s: bitstring, d: bitstring, n: bitstring, rule: bitstring;
+  event(AcceptAlert(accuser, s, d, n, rule)) ==>
+  event(AccuserVerified(accuser, s, d, n)).
+
+query s: bitstring, d: bitstring;
+  event(SingleSidedRoot(s, d)) ==>
+  event(BothSidedRoot(s, d)).
+
+let sender(signing_key: skey) =
+  new previous_head: bitstring;
+  let body = (session_id, d_ab, seq1, agent_a, previous_head) in
+  let event_signature = sign(body, signing_key) in
+  let anchor_signature = sign((session_id, d_ab, agent_a), signing_key) in
+  let evidence_signature =
+    sign((session_id, d_ab, seq1, rule_allow), signing_key)
+  in
+  event HonestSend(session_id, d_ab, seq1, agent_a, previous_head);
+  event ChainLink(session_id, d_ab, seq1, previous_head);
+  out(carrier, (body, event_signature, anchor_signature, evidence_signature)).
+
+let accuser =
+  in(carrier,
+     (body: bitstring, event_signature: signature,
+      anchor_signature: signature, evidence_signature: signature));
+  let (s: bitstring, d: bitstring, n: bitstring, sender_name: bitstring,
+       previous_head: bitstring) = body in
+  let alert_tag =
+    accuser_mac((s, d, n, rule_allow), accuser_secret)
+  in
+  out(carrier,
+      (body, event_signature, anchor_signature, evidence_signature, alert_tag)).
+
+let receiver_final(s: bitstring, d: bitstring, n: bitstring,
+                   sender_name: bitstring, previous_head: bitstring) =
+  event AcceptedEvent(s, d, n, sender_name, previous_head);
+  event AcceptAlert(agent_b, s, d, n, rule_allow).
+
+(* MUTATION:N6:START *)
+let receiver_accuser(s: bitstring, d: bitstring, n: bitstring,
+                     sender_name: bitstring, previous_head: bitstring,
+                     alert_tag: mac_code) =
+  if alert_tag = accuser_mac((s, d, n, rule_allow), accuser_secret) then
+    event AccuserVerified(agent_b, s, d, n);
+    event Accuse(agent_b, s, d, n);
+    receiver_final(s, d, n, sender_name, previous_head)
+  else
+    event NoOp(session_id).
+(* MUTATION:N6:END *)
+
+(* MUTATION:N5:START *)
+let receiver_roots(s: bitstring, d: bitstring, n: bitstring,
+                   sender_name: bitstring, previous_head: bitstring,
+                   alert_tag: mac_code) =
+  event BothSidedRoot(s, d);
+  receiver_accuser(s, d, n, sender_name, previous_head, alert_tag).
+(* MUTATION:N5:END *)
+
+(* MUTATION:N3:START *)
+let receiver_freshness(s: bitstring, d: bitstring, n: bitstring,
+                       sender_name: bitstring, previous_head: bitstring,
+                       alert_tag: mac_code) =
+  event Freshness(s, d, n);
+  receiver_roots(s, d, n, sender_name, previous_head, alert_tag).
+(* MUTATION:N3:END *)
+
+(* MUTATION:N4:START *)
+let receiver_rule(s: bitstring, d: bitstring, n: bitstring,
+                  sender_name: bitstring, previous_head: bitstring,
+                  alert_tag: mac_code) =
+  event RuleViolation(s, d, n, rule_allow);
+  receiver_freshness(s, d, n, sender_name, previous_head, alert_tag).
+(* MUTATION:N4:END *)
+
+(* MUTATION:N2:START *)
+let receiver_evidence(s: bitstring, d: bitstring, n: bitstring,
+                      sender_name: bitstring, previous_head: bitstring,
+                      evidence_signature: signature, public_key: pkey,
+                      alert_tag: mac_code) =
+  event NoOp(session_id);
+  receiver_rule(s, d, n, sender_name, previous_head, alert_tag).
+(* MUTATION:N2:END *)
+
+(* MUTATION:N1:START *)
+let receiver_anchor(s: bitstring, d: bitstring, n: bitstring,
+                    sender_name: bitstring, previous_head: bitstring,
+                    anchor_signature: signature, evidence_signature: signature,
+                    public_key: pkey, alert_tag: mac_code) =
+  if eba_checksig(anchor_signature, public_key) = (s, d, sender_name) then
+    event AnchorBinds(s, d, sender_name);
+    receiver_evidence(s, d, n, sender_name, previous_head, evidence_signature,
+                      public_key, alert_tag)
+  else
+    event NoOp(session_id).
+(* MUTATION:N1:END *)
+
+let receiver(public_key: pkey) =
+  in(carrier,
+     (body: bitstring, event_signature: signature, anchor_signature: signature,
+      evidence_signature: signature, alert_tag: mac_code));
+  if eba_checksig(event_signature, public_key) = body then
+    let (s: bitstring, d: bitstring, n: bitstring, sender_name: bitstring,
+         previous_head: bitstring) = body in
+    event Admit(s, d, n, previous_head);
+    receiver_anchor(s, d, n, sender_name, previous_head, anchor_signature,
+                    evidence_signature, public_key, alert_tag)
+  else
+    event NoOp(session_id).
+
+process
+  new signing_key: skey;
+  let public_key = pk(signing_key) in
+  (!sender(signing_key)) | (!accuser) | receiver(public_key)

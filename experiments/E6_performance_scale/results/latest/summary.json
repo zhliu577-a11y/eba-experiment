@@ -1,0 +1,449 @@
+{
+  "end_to_end": {
+    "W1": {
+      "event_verification_latency": {
+        "mean_ms": 0.14940315999874657,
+        "p95_ms": 0.17099999968195334,
+        "p99_ms": 0.25010099990140594
+      },
+      "evidence_generation_latency": {
+        "mean_ms": 0.1485558900028991,
+        "p50_ms": 0.13965000016469276,
+        "p95_ms": 0.19119999979011482,
+        "p99_ms": 0.27530099988325674
+      },
+      "interactions": 10000
+    },
+    "W2": {
+      "0.25": {
+        "evidence_generation_latency": {
+          "mean_ms": 0.1502197400039222,
+          "p95_ms": 0.21351000041249776,
+          "p99_ms": 0.2754999995977414
+        },
+        "interactions": 10000,
+        "measured_alerts": 2370
+      },
+      "0.5": {
+        "evidence_generation_latency": {
+          "mean_ms": 0.1501488400004746,
+          "p95_ms": 0.20261500017113554,
+          "p99_ms": 0.2898100002403228
+        },
+        "interactions": 10000,
+        "measured_alerts": 4957
+      },
+      "1.0": {
+        "evidence_generation_latency": {
+          "mean_ms": 0.14953867000540413,
+          "p95_ms": 0.21960999961265754,
+          "p99_ms": 0.29990900075063126
+        },
+        "interactions": 10000,
+        "measured_alerts": 10000
+      }
+    },
+    "W3": {
+      "0.1": {
+        "accepted_invalid": 0,
+        "accepted_valid": 90000,
+        "alerts_per_second": 646.3581040853189,
+        "attempted": 100000,
+        "cost_per_attempt_us": 1547.1299790000012,
+        "cpu_seconds": 154.21875,
+        "duplicate_alerts": 90997,
+        "invalid_attempts": 10000,
+        "valid_controls": 90000,
+        "wall_seconds": 154.71299790000012
+      },
+      "0.5": {
+        "accepted_invalid": 0,
+        "accepted_valid": 50000,
+        "alerts_per_second": 451.79991451999973,
+        "attempted": 100000,
+        "cost_per_attempt_us": 2213.369165999993,
+        "cpu_seconds": 210.390625,
+        "duplicate_alerts": 54997,
+        "invalid_attempts": 50000,
+        "valid_controls": 50000,
+        "wall_seconds": 221.3369165999993
+      },
+      "0.9": {
+        "accepted_invalid": 0,
+        "accepted_valid": 10000,
+        "alerts_per_second": 521.9659570503982,
+        "attempted": 100000,
+        "cost_per_attempt_us": 1915.8337560000018,
+        "cpu_seconds": 187.703125,
+        "duplicate_alerts": 18997,
+        "invalid_attempts": 90000,
+        "valid_controls": 10000,
+        "wall_seconds": 191.58337560000018
+      },
+      "1.0": {
+        "accepted_invalid": 0,
+        "accepted_valid": 0,
+        "alerts_per_second": 662.5362610236522,
+        "attempted": 100000,
+        "cost_per_attempt_us": 1509.3513499999972,
+        "cpu_seconds": 149.84375,
+        "duplicate_alerts": 9999,
+        "invalid_attempts": 100000,
+        "valid_controls": 0,
+        "wall_seconds": 150.93513499999972
+      }
+    }
+  },
+  "environment": {
+    "captured_at": "2026-09-22T08:37:31.404194+00:00",
+    "machine": "AMD64",
+    "platform": "Windows-10-10.0.19045-SP0",
+    "processor": "Intel64 Family 6 Model 167 Stepping 1, GenuineIntel",
+    "python": "3.13.15 (tags/v3.13.15:4061bc4, Aug  5 2026, 13:05:39) [MSC v.1944 64 bit (AMD64)]",
+    "python_executable": "E:\\文档\\论文\\.venv\\Scripts\\python.exe"
+  },
+  "experiment": "E6_performance_scale",
+  "flood_alerts_per_fraction": 100000,
+  "interactions_per_condition": 10000,
+  "measurement_boundaries": "Python perf_counter wall time and process_time CPU time",
+  "micro_iterations": 100000,
+  "microbenchmarks": {
+    "anchor_verification": {
+      "cpu_seconds_per_operation": 0.00070953125,
+      "iterations": 100000,
+      "latency_ms": {
+        "mean": 0.7331389480005146,
+        "p50": 0.5823999999847729,
+        "p95": 1.3039099996149137,
+        "p99": 2.0773029996507817
+      },
+      "max": 0.06799789999968198,
+      "mean": 0.0007331389480005146,
+      "median": 0.0005823999999847729,
+      "min": 0.00047790000007807976,
+      "n": 100000,
+      "operations_per_second": 1357.6149611514584,
+      "p50": 0.0005823999999847729,
+      "p95": 0.0013039099996149136,
+      "p99": 0.0020773029996507815,
+      "stddev": 0.0005651073509996968
+    },
+    "audit_event_construction_sign": {
+      "cpu_seconds_per_operation": 0.00013796875,
+      "iterations": 100000,
+      "latency_ms": {
+        "mean": 0.1453635659993779,
+        "p50": 0.11240000003454043,
+        "p95": 0.2746999998635147,
+        "p99": 0.5051029998230645
+      },
+      "max": 0.017027600000801613,
+      "mean": 0.0001453635659993779,
+      "median": 0.00011240000003454043,
+      "min": 7.370000002993038e-05,
+      "n": 100000,
+      "operations_per_second": 6761.130980084152,
+      "p50": 0.00011240000003454043,
+      "p95": 0.0002746999998635147,
+      "p99": 0.0005051029998230645,
+      "stddev": 0.00021361357621627497
+    },
+    "audit_event_verification": {
+      "cpu_seconds_per_operation": 0.00020703125,
+      "iterations": 100000,
+      "latency_ms": {
+        "mean": 0.21471873899975435,
+        "p50": 0.17149999985122122,
+        "p95": 0.37479999991774093,
+        "p99": 0.619402999782322
+      },
+      "max": 0.03569989999959944,
+      "mean": 0.00021471873899975435,
+      "median": 0.00017149999985122122,
+      "min": 0.00013169999965612078,
+      "n": 100000,
+      "operations_per_second": 4600.643890476764,
+      "p50": 0.00017149999985122122,
+      "p95": 0.00037479999991774093,
+      "p99": 0.000619402999782322,
+      "stddev": 0.0002483221162164961
+    },
+    "evidence_retrieval_json_roundtrip": {
+      "cpu_seconds_per_operation": 2.5625e-05,
+      "iterations": 100000,
+      "latency_ms": {
+        "mean": 0.02525770300050681,
+        "p50": 0.021800000467919745,
+        "p95": 0.04189999981463188,
+        "p99": 0.05369999963477312
+      },
+      "max": 0.0007317999998122104,
+      "mean": 2.525770300050681e-05,
+      "median": 2.1800000467919745e-05,
+      "min": 1.82999992830446e-05,
+      "n": 100000,
+      "operations_per_second": 38457.7977011291,
+      "p50": 2.1800000467919745e-05,
+      "p95": 4.189999981463188e-05,
+      "p99": 5.369999963477312e-05,
+      "stddev": 1.0048657334151653e-05
+    },
+    "inclusion_proof_generation_256": {
+      "cpu_seconds_per_operation": 0.00056875,
+      "iterations": 100000,
+      "latency_ms": {
+        "mean": 0.5859038630006489,
+        "p50": 0.4439000003912952,
+        "p95": 1.2177999997675215,
+        "p99": 1.7404010000154806
+      },
+      "max": 0.08765500000026805,
+      "mean": 0.000585903863000649,
+      "median": 0.0004439000003912952,
+      "min": 0.0003544999999576248,
+      "n": 100000,
+      "operations_per_second": 1697.0328751380832,
+      "p50": 0.0004439000003912952,
+      "p95": 0.0012177999997675215,
+      "p99": 0.0017404010000154806,
+      "stddev": 0.0005417879530578352
+    },
+    "inclusion_proof_verification_256": {
+      "cpu_seconds_per_operation": 1.1875e-05,
+      "iterations": 100000,
+      "latency_ms": {
+        "mean": 0.011427950999595851,
+        "p50": 0.009500000487605575,
+        "p95": 0.02069999936793465,
+        "p99": 0.03249999917898094
+      },
+      "max": 0.0004332999997131992,
+      "mean": 1.142795099959585e-05,
+      "median": 9.500000487605575e-06,
+      "min": 8.69999985297909e-06,
+      "n": 100000,
+      "operations_per_second": 82987.52431953979,
+      "p50": 9.500000487605575e-06,
+      "p95": 2.069999936793465e-05,
+      "p99": 3.249999917898094e-05,
+      "stddev": 6.773626403371627e-06
+    },
+    "jcs_canonicalization": {
+      "cpu_seconds_per_operation": 5.875e-05,
+      "iterations": 100000,
+      "latency_ms": {
+        "mean": 0.0588449479980045,
+        "p50": 0.04850000004807953,
+        "p95": 0.10590000056254212,
+        "p99": 0.16069999947831093
+      },
+      "max": 0.009304799999881652,
+      "mean": 5.88449479980045e-05,
+      "median": 4.850000004807953e-05,
+      "min": 3.910000032192329e-05,
+      "n": 100000,
+      "operations_per_second": 16627.967289860786,
+      "p50": 4.850000004807953e-05,
+      "p95": 0.00010590000056254212,
+      "p99": 0.00016069999947831092,
+      "stddev": 5.291798836597198e-05
+    },
+    "merkle_internal_hash": {
+      "cpu_seconds_per_operation": 1.5625e-06,
+      "iterations": 100000,
+      "latency_ms": {
+        "mean": 0.001251092997899832,
+        "p50": 0.0008999995770864189,
+        "p95": 0.002499999936844688,
+        "p99": 0.004200000148557592
+      },
+      "max": 0.0010570000004008762,
+      "mean": 1.251092997899832e-06,
+      "median": 8.999995770864189e-07,
+      "min": 6.999998731771484e-07,
+      "n": 100000,
+      "operations_per_second": 550157.8953168708,
+      "p50": 8.999995770864189e-07,
+      "p95": 2.499999936844688e-06,
+      "p99": 4.200000148557592e-06,
+      "stddev": 4.277829193314448e-06
+    },
+    "merkle_leaf_hash": {
+      "cpu_seconds_per_operation": 1.25e-06,
+      "iterations": 100000,
+      "latency_ms": {
+        "mean": 0.0008690579998983594,
+        "p50": 0.0007000007826718502,
+        "p95": 0.0015999994502635673,
+        "p99": 0.003000000106112566
+      },
+      "max": 0.00016249999953288352,
+      "mean": 8.690579998983594e-07,
+      "median": 7.000007826718502e-07,
+      "min": 5.999991117278114e-07,
+      "n": 100000,
+      "operations_per_second": 734637.2655012008,
+      "p50": 7.000007826718502e-07,
+      "p95": 1.5999994502635673e-06,
+      "p99": 3.000000106112566e-06,
+      "stddev": 9.463671309567464e-07
+    },
+    "merkle_root_64_leaves": {
+      "cpu_seconds_per_operation": 0.00013109375,
+      "iterations": 100000,
+      "latency_ms": {
+        "mean": 0.133836881000434,
+        "p50": 0.10280000060447492,
+        "p95": 0.2702000001590932,
+        "p99": 0.40669999998499407
+      },
+      "max": 0.01162079999994603,
+      "mean": 0.000133836881000434,
+      "median": 0.00010280000060447492,
+      "min": 8.83999991856399e-05,
+      "n": 100000,
+      "operations_per_second": 7386.791910806943,
+      "p50": 0.00010280000060447492,
+      "p95": 0.0002702000001590932,
+      "p99": 0.00040669999998499407,
+      "stddev": 0.0001262466857472593
+    },
+    "rule_re_evaluation": {
+      "cpu_seconds_per_operation": 4.6875e-07,
+      "iterations": 100000,
+      "latency_ms": {
+        "mean": 0.00034079100049893895,
+        "p50": 0.00030000046535860747,
+        "p95": 0.0004000003173132427,
+        "p99": 0.0005000001692678779
+      },
+      "max": 1.2400000741763506e-05,
+      "mean": 3.4079100049893893e-07,
+      "median": 3.0000046535860747e-07,
+      "min": 2.999995558639057e-07,
+      "n": 100000,
+      "operations_per_second": 1325129.8958576645,
+      "p50": 3.0000046535860747e-07,
+      "p95": 4.000003173132427e-07,
+      "p99": 5.000001692678779e-07,
+      "stddev": 1.0491093869092692e-07
+    },
+    "sha256_message_hash": {
+      "cpu_seconds_per_operation": 1.5625e-06,
+      "iterations": 100000,
+      "latency_ms": {
+        "mean": 0.001414121999141571,
+        "p50": 0.000999999429041054,
+        "p95": 0.0028000004022032954,
+        "p99": 0.0043999998615618105
+      },
+      "max": 0.0003094000003329711,
+      "mean": 1.414121999141571e-06,
+      "median": 9.99999429041054e-07,
+      "min": 7.999997251317836e-07,
+      "n": 100000,
+      "operations_per_second": 476570.1437396288,
+      "p50": 9.99999429041054e-07,
+      "p95": 2.8000004022032954e-06,
+      "p99": 4.39999986156181e-06,
+      "stddev": 2.9075457857983235e-06
+    },
+    "single_signature_verification": {
+      "cpu_seconds_per_operation": 0.00015265625,
+      "iterations": 100000,
+      "latency_ms": {
+        "mean": 0.15210342599993054,
+        "p50": 0.1436000002286164,
+        "p95": 0.1905999997688923,
+        "p99": 0.273399999969115
+      },
+      "max": 0.0009030000001075678,
+      "mean": 0.00015210342599993054,
+      "median": 0.0001436000002286164,
+      "min": 0.00013190000026952475,
+      "n": 100000,
+      "operations_per_second": 6536.808135811007,
+      "p50": 0.0001436000002286164,
+      "p95": 0.0001905999997688923,
+      "p99": 0.000273399999969115,
+      "stddev": 2.6464609092514977e-05
+    },
+    "tee_session_key_generation": {
+      "cpu_seconds_per_operation": 4.921875e-05,
+      "iterations": 100000,
+      "latency_ms": {
+        "mean": 0.04964806899998621,
+        "p50": 0.04199999966658652,
+        "p95": 0.08040000011533266,
+        "p99": 0.13380100018366595
+      },
+      "max": 0.015861900000345486,
+      "mean": 4.964806899998621e-05,
+      "median": 4.199999966658652e-05,
+      "min": 3.060000017285347e-05,
+      "n": 100000,
+      "operations_per_second": 19594.571465058012,
+      "p50": 4.199999966658652e-05,
+      "p95": 8.040000011533266e-05,
+      "p99": 0.00013380100018366595,
+      "stddev": 7.247298658441663e-05
+    }
+  },
+  "profile": "full",
+  "third_party_path": {
+    "cpu_seconds_per_operation": 0.00125,
+    "decision": "ACCEPT",
+    "iterations": 10000,
+    "latency_ms": {
+      "mean": 1.2487736599953678,
+      "p50": 1.210499999615422,
+      "p95": 1.3843149997228463,
+      "p99": 2.0824090002861344
+    },
+    "max": 0.009661200000664394,
+    "mean": 0.0012487736599953677,
+    "median": 0.001210499999615422,
+    "min": 0.001132800000050338,
+    "n": 10000,
+    "network_included": false,
+    "operations_per_second": 799.8019306514748,
+    "p50": 0.001210499999615422,
+    "p95": 0.0013843149997228464,
+    "p99": 0.0020824090002861343,
+    "participant_local_state_used": false,
+    "path": "anchor verification, direct-provider bundle retrieval, proof verification, signature verification, and rule re-evaluation",
+    "reason": "ACCEPT",
+    "stddev": 0.00016458630021788973
+  },
+  "title": "E6 Performance, Scale, and Overhead",
+  "warmup_policy": "100 operations before each microbenchmark",
+  "wire_and_root_publication": {
+    "audit_event_bytes": 545,
+    "bundle_bytes": 2894,
+    "inclusion_proof_bytes": 39,
+    "revoke_advice_bytes": 535,
+    "root_attestation_bytes": 352,
+    "root_publication": {
+      "1": {
+        "amortized_bytes_per_event": 352.0,
+        "root_bytes": 352,
+        "root_publication_seconds": 0.0002755999994406011
+      },
+      "10": {
+        "amortized_bytes_per_event": 35.4,
+        "root_bytes": 354,
+        "root_publication_seconds": 0.0006456000000980566
+      },
+      "100": {
+        "amortized_bytes_per_event": 3.56,
+        "root_bytes": 356,
+        "root_publication_seconds": 0.004761300000609481
+      },
+      "1000": {
+        "amortized_bytes_per_event": 0.358,
+        "root_bytes": 358,
+        "root_publication_seconds": 0.04309999999986758
+      }
+    }
+  }
+}

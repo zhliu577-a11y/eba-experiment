@@ -1,0 +1,1523 @@
+{
+  "started_at": "2026-09-22T08:38:55.514911+00:00",
+  "profile": "standard",
+  "experiments": {
+    "E0": {
+      "status": "completed",
+      "elapsed_seconds": 0.7533970000004047,
+      "result": {
+        "profile": "fixed-vectors",
+        "checks": [
+          {
+            "name": "jcs_fixed_vectors_cross_language",
+            "passed": true
+          },
+          {
+            "name": "signature_interop",
+            "passed": true
+          },
+          {
+            "name": "schema_required_fields",
+            "passed": true
+          },
+          {
+            "name": "verdict_and_reason_mapping",
+            "passed": true
+          },
+          {
+            "name": "duplicate_alert_deduplication",
+            "passed": true
+          },
+          {
+            "name": "out_of_order_buffering",
+            "passed": true
+          },
+          {
+            "name": "session_rotation_separates_chains",
+            "passed": true
+          },
+          {
+            "name": "garbage_collected_evidence_is_unconfirmed",
+            "passed": true
+          },
+          {
+            "name": "clock_window_boundary",
+            "passed": true
+          },
+          {
+            "name": "retraction_preserves_original_decision",
+            "passed": true
+          }
+        ],
+        "passed": 10,
+        "failed": 0,
+        "jcs_python": [
+          "{\"a\":1,\"b\":2}",
+          "[null,true,false]",
+          "{\"literals\":[null,true,false],\"numbers\":[333333333.3333333,1e+30,4.5,0.002,1e-27],\"string\":\"€$\\u000f\\nA'B\\\"\\\\\\\"/\"}"
+        ],
+        "jcs_node": [
+          "{\"a\":1,\"b\":2}",
+          "[null,true,false]",
+          "{\"literals\":[null,true,false],\"numbers\":[333333333.3333333,1e+30,4.5,0.002,1e-27],\"string\":\"€$\\u000f\\nA'B\\\"\\\\\\\"/\"}"
+        ],
+        "verdict_matrix": {
+          "valid": {
+            "decision": "ACCEPT",
+            "reason": "ACCEPT",
+            "detail": "all_d9_conditions",
+            "candidate_failures": []
+          },
+          "missing_evidence": {
+            "decision": "UNCONFIRMED",
+            "reason": "EVIDENCE_UNAVAILABLE",
+            "detail": "no_valid_candidate_before_ttl",
+            "candidate_failures": []
+          },
+          "unknown_rule": {
+            "decision": "REJECT",
+            "reason": "RULE_UNKNOWN",
+            "detail": "rule_version_missing",
+            "candidate_failures": []
+          }
+        }
+      }
+    },
+    "E1": {
+      "status": "completed",
+      "elapsed_seconds": 2.119708299999729,
+      "result": {
+        "profile": "standard",
+        "trials_per_class": 100,
+        "classes": {
+          "modification": {
+            "trials": 100,
+            "detected": 100,
+            "accepted_invalid": 0,
+            "detection_rate": 1.0,
+            "decisions": {
+              "UNCONFIRMED": 100
+            },
+            "reasons": {
+              "EVIDENCE_UNAVAILABLE": 100
+            }
+          },
+          "insertion": {
+            "trials": 100,
+            "detected": 100,
+            "accepted_invalid": 0,
+            "detection_rate": 1.0,
+            "decisions": {
+              "UNCONFIRMED": 100
+            },
+            "reasons": {
+              "EVIDENCE_UNAVAILABLE": 100
+            }
+          },
+          "reordering": {
+            "trials": 100,
+            "detected": 100,
+            "accepted_invalid": 0,
+            "detection_rate": 1.0,
+            "decisions": {
+              "UNCONFIRMED": 100
+            },
+            "reasons": {
+              "EVIDENCE_UNAVAILABLE": 100
+            }
+          },
+          "cross_direction_replay": {
+            "trials": 100,
+            "detected": 100,
+            "accepted_invalid": 0,
+            "detection_rate": 1.0,
+            "decisions": {
+              "UNCONFIRMED": 100
+            },
+            "reasons": {
+              "EVIDENCE_UNAVAILABLE": 100
+            }
+          },
+          "cross_session_replay": {
+            "trials": 100,
+            "detected": 100,
+            "accepted_invalid": 0,
+            "detection_rate": 1.0,
+            "decisions": {
+              "UNCONFIRMED": 100
+            },
+            "reasons": {
+              "EVIDENCE_UNAVAILABLE": 100
+            }
+          },
+          "chain_head_rollback": {
+            "trials": 100,
+            "detected": 100,
+            "accepted_invalid": 0,
+            "detection_rate": 1.0,
+            "decisions": {
+              "UNCONFIRMED": 100
+            },
+            "reasons": {
+              "CHAIN_HEAD_ROLLBACK": 100
+            }
+          },
+          "conflicting_roots": {
+            "trials": 100,
+            "detected": 100,
+            "accepted_invalid": 0,
+            "detection_rate": 1.0,
+            "decisions": {
+              "REJECT": 100
+            },
+            "reasons": {
+              "EQUIVOCATION_DETECTED": 100
+            }
+          }
+        },
+        "all_tampering_detected": true,
+        "conflicting_roots_always_typed": true,
+        "seed_policy": "deterministic case index plus secure random session keys"
+      }
+    },
+    "E2": {
+      "status": "completed",
+      "elapsed_seconds": 0.5211395999995148,
+      "result": {
+        "profile": "standard",
+        "trials": 100,
+        "legitimate_attributable": 100,
+        "legitimate_attribution_rate": 1.0,
+        "peer_forgery_rejected": 100,
+        "peer_forgery_rejection_rate": 1.0,
+        "key_substitution_rejected": 100,
+        "key_substitution_rejection_rate": 1.0,
+        "n1_shared_key_forgery_accepts": 100,
+        "n1_expected_failure_observed": true,
+        "outcomes": {
+          "peer_forgery:UNCONFIRMED:EVIDENCE_UNAVAILABLE": 100
+        }
+      }
+    },
+    "E3": {
+      "status": "completed",
+      "elapsed_seconds": 7.67241390000072,
+      "result": {
+        "profile": "standard",
+        "trials_per_attack": 100,
+        "cases": {
+          "valid_control": {
+            "trials": 100,
+            "expected": {
+              "decision": "ACCEPT",
+              "reason": "ACCEPT"
+            },
+            "expected_count": 100,
+            "typed_reason_rate": 1.0,
+            "outcomes": {
+              "ACCEPT:ACCEPT": 100
+            }
+          },
+          "forged_anchor": {
+            "trials": 100,
+            "expected": {
+              "decision": "REJECT",
+              "reason": "ANCHOR_INVALID"
+            },
+            "expected_count": 100,
+            "typed_reason_rate": 1.0,
+            "outcomes": {
+              "REJECT:ANCHOR_INVALID": 100
+            }
+          },
+          "forged_evidence": {
+            "trials": 100,
+            "expected": {
+              "decision": "UNCONFIRMED",
+              "reason": "EVIDENCE_UNAVAILABLE"
+            },
+            "expected_count": 100,
+            "typed_reason_rate": 1.0,
+            "outcomes": {
+              "UNCONFIRMED:EVIDENCE_UNAVAILABLE": 100
+            }
+          },
+          "altered_copy": {
+            "trials": 100,
+            "expected": {
+              "decision": "REJECT",
+              "reason": "EVIDENCE_MISMATCH"
+            },
+            "expected_count": 100,
+            "typed_reason_rate": 1.0,
+            "outcomes": {
+              "REJECT:EVIDENCE_MISMATCH": 100
+            }
+          },
+          "incorrect_proof": {
+            "trials": 100,
+            "expected": {
+              "decision": "UNCONFIRMED",
+              "reason": "PROOF_UNAVAILABLE"
+            },
+            "expected_count": 100,
+            "typed_reason_rate": 1.0,
+            "outcomes": {
+              "UNCONFIRMED:PROOF_UNAVAILABLE": 100
+            }
+          },
+          "conflicting_roots": {
+            "trials": 100,
+            "expected": {
+              "decision": "REJECT",
+              "reason": "EQUIVOCATION_DETECTED"
+            },
+            "expected_count": 100,
+            "typed_reason_rate": 1.0,
+            "outcomes": {
+              "REJECT:EQUIVOCATION_DETECTED": 100
+            }
+          },
+          "forged_accuser": {
+            "trials": 100,
+            "expected": {
+              "decision": "REJECT",
+              "reason": "ACCUSER_SIG_INVALID"
+            },
+            "expected_count": 100,
+            "typed_reason_rate": 1.0,
+            "outcomes": {
+              "REJECT:ACCUSER_SIG_INVALID": 100
+            }
+          },
+          "mislabeled_rule": {
+            "trials": 100,
+            "expected": {
+              "decision": "REJECT",
+              "reason": "RULE_NOT_VIOLATED"
+            },
+            "expected_count": 100,
+            "typed_reason_rate": 1.0,
+            "outcomes": {
+              "REJECT:RULE_NOT_VIOLATED": 100
+            }
+          },
+          "missing_rule": {
+            "trials": 100,
+            "expected": {
+              "decision": "REJECT",
+              "reason": "RULE_UNKNOWN"
+            },
+            "expected_count": 100,
+            "typed_reason_rate": 1.0,
+            "outcomes": {
+              "REJECT:RULE_UNKNOWN": 100
+            }
+          },
+          "expired_alert": {
+            "trials": 100,
+            "expected": {
+              "decision": "REJECT",
+              "reason": "STALE_ALERT"
+            },
+            "expected_count": 100,
+            "typed_reason_rate": 1.0,
+            "outcomes": {
+              "REJECT:STALE_ALERT": 100
+            }
+          },
+          "future_time": {
+            "trials": 100,
+            "expected": {
+              "decision": "REJECT",
+              "reason": "TIME_WINDOW_INVALID"
+            },
+            "expected_count": 100,
+            "typed_reason_rate": 1.0,
+            "outcomes": {
+              "REJECT:TIME_WINDOW_INVALID": 100
+            }
+          },
+          "forged_retraction": {
+            "trials": 100,
+            "expected": {
+              "decision": "REJECT",
+              "reason": "RETRACTION_INVALID"
+            },
+            "expected_count": 100,
+            "typed_reason_rate": 1.0,
+            "outcomes": {
+              "REJECT:RETRACTION_INVALID": 100
+            }
+          },
+          "unavailable_evidence": {
+            "trials": 100,
+            "expected": {
+              "decision": "UNCONFIRMED",
+              "reason": "EVIDENCE_UNAVAILABLE"
+            },
+            "expected_count": 100,
+            "typed_reason_rate": 1.0,
+            "outcomes": {
+              "UNCONFIRMED:EVIDENCE_UNAVAILABLE": 100
+            }
+          }
+        },
+        "invalid_acceptances": 0,
+        "valid_control_acceptances": 100,
+        "valid_control_expected": 100,
+        "sybil_pressure": {
+          "0.1": {
+            "alerts": 200,
+            "invalid_alerts": 20,
+            "valid_controls": 180,
+            "accepted_invalid": 0,
+            "invalid_acceptance_rate": 0.0,
+            "accepted_valid": 180,
+            "valid_acceptance_rate": 1.0,
+            "reasons": {
+              "invalid:EVIDENCE_MISMATCH": 20,
+              "valid:ACCEPT": 180
+            }
+          },
+          "0.5": {
+            "alerts": 200,
+            "invalid_alerts": 100,
+            "valid_controls": 100,
+            "accepted_invalid": 0,
+            "invalid_acceptance_rate": 0.0,
+            "accepted_valid": 100,
+            "valid_acceptance_rate": 1.0,
+            "reasons": {
+              "invalid:EVIDENCE_MISMATCH": 100,
+              "valid:ACCEPT": 100
+            }
+          },
+          "0.9": {
+            "alerts": 200,
+            "invalid_alerts": 180,
+            "valid_controls": 20,
+            "accepted_invalid": 0,
+            "invalid_acceptance_rate": 0.0,
+            "accepted_valid": 20,
+            "valid_acceptance_rate": 1.0,
+            "reasons": {
+              "invalid:EVIDENCE_MISMATCH": 180,
+              "valid:ACCEPT": 20
+            }
+          },
+          "1.0": {
+            "alerts": 200,
+            "invalid_alerts": 200,
+            "valid_controls": 0,
+            "accepted_invalid": 0,
+            "invalid_acceptance_rate": 0.0,
+            "accepted_valid": 0,
+            "valid_acceptance_rate": 0.0,
+            "reasons": {
+              "invalid:EVIDENCE_MISMATCH": 200
+            }
+          }
+        },
+        "sybil_pressure_passed": true,
+        "seed_policy": "deterministic case index plus secure random keys"
+      }
+    },
+    "E4": {
+      "status": "completed",
+      "elapsed_seconds": 57.89177610000024,
+      "result": {
+        "profile": "standard",
+        "trials_per_scenario": 30,
+        "scenarios": {
+          "complete_evidence": {
+            "trials": 30,
+            "agreements": 30,
+            "agreement_rate": 1.0,
+            "participant": {
+              "ACCEPT:ACCEPT": 30
+            },
+            "observer": {
+              "ACCEPT:ACCEPT": 30
+            }
+          },
+          "missing_evidence": {
+            "trials": 30,
+            "agreements": 30,
+            "agreement_rate": 1.0,
+            "participant": {
+              "UNCONFIRMED:EVIDENCE_UNAVAILABLE": 30
+            },
+            "observer": {
+              "UNCONFIRMED:EVIDENCE_UNAVAILABLE": 30
+            }
+          },
+          "incorrect_evidence": {
+            "trials": 30,
+            "agreements": 30,
+            "agreement_rate": 1.0,
+            "participant": {
+              "UNCONFIRMED:EVIDENCE_UNAVAILABLE": 30
+            },
+            "observer": {
+              "UNCONFIRMED:EVIDENCE_UNAVAILABLE": 30
+            }
+          },
+          "deterministic_mismatch": {
+            "trials": 30,
+            "agreements": 30,
+            "agreement_rate": 1.0,
+            "participant": {
+              "REJECT:EVIDENCE_MISMATCH": 30
+            },
+            "observer": {
+              "REJECT:EVIDENCE_MISMATCH": 30
+            }
+          },
+          "forged_anchor": {
+            "trials": 30,
+            "agreements": 30,
+            "agreement_rate": 1.0,
+            "participant": {
+              "REJECT:ANCHOR_INVALID": 30
+            },
+            "observer": {
+              "REJECT:ANCHOR_INVALID": 30
+            }
+          }
+        },
+        "all_verdicts_agree": true,
+        "unavailability_never_accepts": true,
+        "observer_isolation": "new OS subprocess per scenario trial"
+      }
+    },
+    "E5": {
+      "status": "completed",
+      "elapsed_seconds": 32.380200599999625,
+      "result": {
+        "profile": "standard",
+        "independent_holders": {
+          "k=1,alpha=1.0": {
+            "holders": 1,
+            "alpha": 1.0,
+            "trials": 1000,
+            "successes": 1000,
+            "empirical_success_rate": 1.0,
+            "theoretical_success_rate": 1.0,
+            "absolute_error": 0.0,
+            "within_tolerance": true,
+            "typed_failures": 0,
+            "invalid_accepts": 0
+          },
+          "k=1,alpha=0.9": {
+            "holders": 1,
+            "alpha": 0.9,
+            "trials": 1000,
+            "successes": 907,
+            "empirical_success_rate": 0.907,
+            "theoretical_success_rate": 0.9,
+            "absolute_error": 0.007000000000000006,
+            "within_tolerance": true,
+            "typed_failures": 93,
+            "invalid_accepts": 0
+          },
+          "k=1,alpha=0.5": {
+            "holders": 1,
+            "alpha": 0.5,
+            "trials": 1000,
+            "successes": 500,
+            "empirical_success_rate": 0.5,
+            "theoretical_success_rate": 0.5,
+            "absolute_error": 0.0,
+            "within_tolerance": true,
+            "typed_failures": 500,
+            "invalid_accepts": 0
+          },
+          "k=1,alpha=0.1": {
+            "holders": 1,
+            "alpha": 0.1,
+            "trials": 1000,
+            "successes": 92,
+            "empirical_success_rate": 0.092,
+            "theoretical_success_rate": 0.09999999999999998,
+            "absolute_error": 0.00799999999999998,
+            "within_tolerance": true,
+            "typed_failures": 908,
+            "invalid_accepts": 0
+          },
+          "k=2,alpha=1.0": {
+            "holders": 2,
+            "alpha": 1.0,
+            "trials": 1000,
+            "successes": 1000,
+            "empirical_success_rate": 1.0,
+            "theoretical_success_rate": 1.0,
+            "absolute_error": 0.0,
+            "within_tolerance": true,
+            "typed_failures": 0,
+            "invalid_accepts": 0
+          },
+          "k=2,alpha=0.9": {
+            "holders": 2,
+            "alpha": 0.9,
+            "trials": 1000,
+            "successes": 986,
+            "empirical_success_rate": 0.986,
+            "theoretical_success_rate": 0.99,
+            "absolute_error": 0.0040000000000000036,
+            "within_tolerance": true,
+            "typed_failures": 14,
+            "invalid_accepts": 0
+          },
+          "k=2,alpha=0.5": {
+            "holders": 2,
+            "alpha": 0.5,
+            "trials": 1000,
+            "successes": 738,
+            "empirical_success_rate": 0.738,
+            "theoretical_success_rate": 0.75,
+            "absolute_error": 0.01200000000000001,
+            "within_tolerance": true,
+            "typed_failures": 262,
+            "invalid_accepts": 0
+          },
+          "k=2,alpha=0.1": {
+            "holders": 2,
+            "alpha": 0.1,
+            "trials": 1000,
+            "successes": 200,
+            "empirical_success_rate": 0.2,
+            "theoretical_success_rate": 0.18999999999999995,
+            "absolute_error": 0.010000000000000064,
+            "within_tolerance": true,
+            "typed_failures": 800,
+            "invalid_accepts": 0
+          },
+          "k=5,alpha=1.0": {
+            "holders": 5,
+            "alpha": 1.0,
+            "trials": 1000,
+            "successes": 1000,
+            "empirical_success_rate": 1.0,
+            "theoretical_success_rate": 1.0,
+            "absolute_error": 0.0,
+            "within_tolerance": true,
+            "typed_failures": 0,
+            "invalid_accepts": 0
+          },
+          "k=5,alpha=0.9": {
+            "holders": 5,
+            "alpha": 0.9,
+            "trials": 1000,
+            "successes": 1000,
+            "empirical_success_rate": 1.0,
+            "theoretical_success_rate": 0.99999,
+            "absolute_error": 9.99999999995449e-06,
+            "within_tolerance": true,
+            "typed_failures": 0,
+            "invalid_accepts": 0
+          },
+          "k=5,alpha=0.5": {
+            "holders": 5,
+            "alpha": 0.5,
+            "trials": 1000,
+            "successes": 966,
+            "empirical_success_rate": 0.966,
+            "theoretical_success_rate": 0.96875,
+            "absolute_error": 0.00275000000000003,
+            "within_tolerance": true,
+            "typed_failures": 34,
+            "invalid_accepts": 0
+          },
+          "k=5,alpha=0.1": {
+            "holders": 5,
+            "alpha": 0.1,
+            "trials": 1000,
+            "successes": 435,
+            "empirical_success_rate": 0.435,
+            "theoretical_success_rate": 0.40950999999999993,
+            "absolute_error": 0.025490000000000068,
+            "within_tolerance": true,
+            "typed_failures": 565,
+            "invalid_accepts": 0
+          }
+        },
+        "all_curves_within_tolerance": true,
+        "curves_have_zero_invalid_accepts": true,
+        "failure_modes": {
+          "scenarios": {
+            "all_holders_offline": {
+              "decision": "UNCONFIRMED",
+              "reason": "EVIDENCE_UNAVAILABLE",
+              "detail": "no_valid_candidate_before_ttl",
+              "candidate_failures": []
+            },
+            "malicious_provider_only": {
+              "decision": "UNCONFIRMED",
+              "reason": "EVIDENCE_UNAVAILABLE",
+              "detail": "no_valid_candidate_before_ttl",
+              "candidate_failures": [
+                "EVIDENCE_INVALID"
+              ]
+            },
+            "one_bad_one_good_provider": {
+              "decision": "ACCEPT",
+              "reason": "ACCEPT",
+              "detail": "all_d9_conditions",
+              "candidate_failures": []
+            },
+            "retrieval_deadline_before_ttl": {
+              "decision": "UNCONFIRMED",
+              "reason": "EVIDENCE_UNAVAILABLE",
+              "detail": "no_valid_candidate_before_ttl",
+              "candidate_failures": []
+            },
+            "retrieval_deadline_after_ttl": {
+              "decision": "REJECT",
+              "reason": "STALE_ALERT",
+              "detail": "alert_ttl",
+              "candidate_failures": []
+            },
+            "available_before_ttl": {
+              "decision": "ACCEPT",
+              "reason": "ACCEPT",
+              "detail": "all_d9_conditions",
+              "candidate_failures": []
+            },
+            "available_after_ttl": {
+              "decision": "REJECT",
+              "reason": "STALE_ALERT",
+              "detail": "alert_ttl",
+              "candidate_failures": []
+            }
+          },
+          "unavailability_safe": true,
+          "bad_provider_does_not_override_good_provider": true,
+          "after_ttl_is_stale": true
+        }
+      }
+    },
+    "E6": {
+      "status": "completed",
+      "elapsed_seconds": 79.9457223999998,
+      "result": {
+        "profile": "standard",
+        "micro_iterations": 10000,
+        "interactions_per_condition": 1000,
+        "flood_alerts_per_fraction": 10000,
+        "microbenchmarks": {
+          "tee_session_key_generation": {
+            "n": 10000,
+            "mean": 3.440102000295156e-05,
+            "stddev": 5.227550067341021e-06,
+            "median": 3.290000040578889e-05,
+            "p50": 3.290000040578889e-05,
+            "p95": 4.369999987829942e-05,
+            "p99": 5.750100036493679e-05,
+            "min": 3.060000017285347e-05,
+            "max": 0.0001717000004646252,
+            "iterations": 10000,
+            "latency_ms": {
+              "mean": 0.03440102000295156,
+              "p50": 0.03290000040578889,
+              "p95": 0.04369999987829942,
+              "p99": 0.05750100036493679
+            },
+            "cpu_seconds_per_operation": 3.4375e-05,
+            "operations_per_second": 28562.663913944732
+          },
+          "jcs_canonicalization": {
+            "n": 10000,
+            "mean": 4.416552999455234e-05,
+            "stddev": 7.897437923503998e-06,
+            "median": 4.1900000724126585e-05,
+            "p50": 4.1900000724126585e-05,
+            "p95": 5.609999971056823e-05,
+            "p99": 7.600200025990493e-05,
+            "min": 3.9200000173877925e-05,
+            "max": 0.00025889999960782006,
+            "iterations": 10000,
+            "latency_ms": {
+              "mean": 0.044165529994552345,
+              "p50": 0.041900000724126585,
+              "p95": 0.05609999971056823,
+              "p99": 0.07600200025990493
+            },
+            "cpu_seconds_per_operation": 4.375e-05,
+            "operations_per_second": 22335.173677187864
+          },
+          "sha256_message_hash": {
+            "n": 10000,
+            "mean": 9.406100003616302e-07,
+            "stddev": 4.2640357223419116e-07,
+            "median": 9.000004865811206e-07,
+            "p50": 9.000004865811206e-07,
+            "p95": 1.0000003385357559e-06,
+            "p99": 1.5000005078036338e-06,
+            "min": 7.999997251317836e-07,
+            "max": 3.0499999411404133e-05,
+            "iterations": 10000,
+            "latency_ms": {
+              "mean": 0.0009406100003616302,
+              "p50": 0.0009000004865811206,
+              "p95": 0.0010000003385357559,
+              "p99": 0.0015000005078036338
+            },
+            "cpu_seconds_per_operation": 1.5625e-06,
+            "operations_per_second": 735229.2445131838
+          },
+          "audit_event_construction_sign": {
+            "n": 10000,
+            "mean": 8.30215100037094e-05,
+            "stddev": 1.5846563342053108e-05,
+            "median": 7.869999990361976e-05,
+            "p50": 7.869999990361976e-05,
+            "p95": 0.00010199999996984843,
+            "p99": 0.0001694020002287289,
+            "min": 7.380000079137972e-05,
+            "max": 0.0002982000005431473,
+            "iterations": 10000,
+            "latency_ms": {
+              "mean": 0.0830215100037094,
+              "p50": 0.07869999990361976,
+              "p95": 0.10199999996984843,
+              "p99": 0.1694020002287289
+            },
+            "cpu_seconds_per_operation": 8.28125e-05,
+            "operations_per_second": 11943.35030085372
+          },
+          "audit_event_verification": {
+            "n": 10000,
+            "mean": 0.0001463177900030132,
+            "stddev": 1.5001707694646402e-05,
+            "median": 0.0001419000000169035,
+            "p50": 0.0001419000000169035,
+            "p95": 0.000167199999850709,
+            "p99": 0.00023360100067293388,
+            "min": 0.00013190000026952475,
+            "max": 0.00043430000005173497,
+            "iterations": 10000,
+            "latency_ms": {
+              "mean": 0.1463177900030132,
+              "p50": 0.1419000000169035,
+              "p95": 0.167199999850709,
+              "p99": 0.23360100067293388
+            },
+            "cpu_seconds_per_operation": 0.000146875,
+            "operations_per_second": 6798.659005304821
+          },
+          "merkle_leaf_hash": {
+            "n": 10000,
+            "mean": 7.458100005351298e-07,
+            "stddev": 2.065688922317378e-07,
+            "median": 6.999998731771484e-07,
+            "p50": 6.999998731771484e-07,
+            "p95": 8.000006346264854e-07,
+            "p99": 1.100000190490391e-06,
+            "min": 5.999991117278114e-07,
+            "max": 1.2799999240087345e-05,
+            "iterations": 10000,
+            "latency_ms": {
+              "mean": 0.0007458100005351297,
+              "p50": 0.0006999998731771484,
+              "p95": 0.0008000006346264854,
+              "p99": 0.001100000190490391
+            },
+            "cpu_seconds_per_operation": 0.0,
+            "operations_per_second": 863520.5733410368
+          },
+          "merkle_internal_hash": {
+            "n": 10000,
+            "mean": 8.792600081505952e-07,
+            "stddev": 2.3090080486415756e-07,
+            "median": 8.999995770864189e-07,
+            "p50": 8.999995770864189e-07,
+            "p95": 9.99999429041054e-07,
+            "p99": 1.2999998943996616e-06,
+            "min": 6.999998731771484e-07,
+            "max": 1.2399999832268804e-05,
+            "iterations": 10000,
+            "latency_ms": {
+              "mean": 0.0008792600081505952,
+              "p50": 0.0008999995770864189,
+              "p95": 0.000999999429041054,
+              "p99": 0.0012999998943996616
+            },
+            "cpu_seconds_per_operation": 0.0,
+            "operations_per_second": 776343.2679514049
+          },
+          "merkle_root_64_leaves": {
+            "n": 10000,
+            "mean": 9.826624000324954e-05,
+            "stddev": 1.1670219271008822e-05,
+            "median": 9.499999941908754e-05,
+            "p50": 9.499999941908754e-05,
+            "p95": 0.00011230000018258579,
+            "p99": 0.00013260600014291426,
+            "min": 8.829999933368526e-05,
+            "max": 0.0004042000000481494,
+            "iterations": 10000,
+            "latency_ms": {
+              "mean": 0.09826624000324954,
+              "p50": 0.09499999941908754,
+              "p95": 0.11230000018258579,
+              "p99": 0.13260600014291427
+            },
+            "cpu_seconds_per_operation": 9.84375e-05,
+            "operations_per_second": 10114.871561865128
+          },
+          "inclusion_proof_generation_256": {
+            "n": 10000,
+            "mean": 0.00038838298000018766,
+            "stddev": 3.6395329428924006e-05,
+            "median": 0.0003778000000238535,
+            "p50": 0.0003778000000238535,
+            "p95": 0.00043780500031971305,
+            "p99": 0.0005071159995986821,
+            "min": 0.00035290000050736126,
+            "max": 0.0009620999999242486,
+            "iterations": 10000,
+            "latency_ms": {
+              "mean": 0.38838298000018767,
+              "p50": 0.3778000000238535,
+              "p95": 0.43780500031971303,
+              "p99": 0.507115999598682
+            },
+            "cpu_seconds_per_operation": 0.0003875,
+            "operations_per_second": 2569.9149869554058
+          },
+          "inclusion_proof_verification_256": {
+            "n": 10000,
+            "mean": 9.727889997247985e-06,
+            "stddev": 1.1123798335318566e-06,
+            "median": 9.40000063565094e-06,
+            "p50": 9.40000063565094e-06,
+            "p95": 1.0799999472510535e-05,
+            "p99": 1.4401000498764936e-05,
+            "min": 8.89999955688836e-06,
+            "max": 4.7200000153679866e-05,
+            "iterations": 10000,
+            "latency_ms": {
+              "mean": 0.009727889997247984,
+              "p50": 0.00940000063565094,
+              "p95": 0.010799999472510535,
+              "p99": 0.014401000498764936
+            },
+            "cpu_seconds_per_operation": 1.09375e-05,
+            "operations_per_second": 97942.13774361953
+          },
+          "anchor_verification": {
+            "n": 10000,
+            "mean": 0.0005382391899947834,
+            "stddev": 9.039923634767495e-05,
+            "median": 0.0005168000006960938,
+            "p50": 0.0005168000006960938,
+            "p95": 0.0006224049998763803,
+            "p99": 0.0009041029993932171,
+            "min": 0.00047929999982443405,
+            "max": 0.0058431999996173545,
+            "iterations": 10000,
+            "latency_ms": {
+              "mean": 0.5382391899947834,
+              "p50": 0.5168000006960938,
+              "p95": 0.6224049998763803,
+              "p99": 0.9041029993932171
+            },
+            "cpu_seconds_per_operation": 0.000540625,
+            "operations_per_second": 1853.8888293688572
+          },
+          "evidence_retrieval_json_roundtrip": {
+            "n": 10000,
+            "mean": 2.14919399963037e-05,
+            "stddev": 3.5441178243559774e-06,
+            "median": 2.0200000108161476e-05,
+            "p50": 2.0200000108161476e-05,
+            "p95": 2.8299999939918052e-05,
+            "p99": 3.6299999919719994e-05,
+            "min": 1.8400000044493936e-05,
+            "max": 7.670000013604295e-05,
+            "iterations": 10000,
+            "latency_ms": {
+              "mean": 0.0214919399963037,
+              "p50": 0.020200000108161476,
+              "p95": 0.028299999939918052,
+              "p99": 0.036299999919719994
+            },
+            "cpu_seconds_per_operation": 2.1875e-05,
+            "operations_per_second": 45304.42307070656
+          },
+          "rule_re_evaluation": {
+            "n": 10000,
+            "mean": 3.3837000219136823e-07,
+            "stddev": 6.929085813384011e-08,
+            "median": 3.0000046535860747e-07,
+            "p50": 3.0000046535860747e-07,
+            "p95": 4.000003173132427e-07,
+            "p99": 4.000003173132427e-07,
+            "min": 2.999995558639057e-07,
+            "max": 2.3000002329354174e-06,
+            "iterations": 10000,
+            "latency_ms": {
+              "mean": 0.00033837000219136824,
+              "p50": 0.00030000046535860747,
+              "p95": 0.0004000003173132427,
+              "p99": 0.0004000003173132427
+            },
+            "cpu_seconds_per_operation": 0.0,
+            "operations_per_second": 1348890.537453013
+          },
+          "single_signature_verification": {
+            "n": 10000,
+            "mean": 0.00014676831999640852,
+            "stddev": 1.548041390421828e-05,
+            "median": 0.00014250000003812602,
+            "p50": 0.00014250000003812602,
+            "p95": 0.00016740000046411296,
+            "p99": 0.00024040099970989106,
+            "min": 0.0001325999992332072,
+            "max": 0.0003581000000849599,
+            "iterations": 10000,
+            "latency_ms": {
+              "mean": 0.14676831999640852,
+              "p50": 0.14250000003812602,
+              "p95": 0.16740000046411296,
+              "p99": 0.24040099970989107
+            },
+            "cpu_seconds_per_operation": 0.000146875,
+            "operations_per_second": 6778.212547396082
+          }
+        },
+        "end_to_end": {
+          "W1": {
+            "interactions": 1000,
+            "evidence_generation_latency": {
+              "mean_ms": 0.14671839999027725,
+              "p50_ms": 0.13999999964653398,
+              "p95_ms": 0.17990500014093413,
+              "p99_ms": 0.2325240004847728
+            },
+            "event_verification_latency": {
+              "mean_ms": 0.1479773000064597,
+              "p95_ms": 0.16759999930400224,
+              "p99_ms": 0.18996599989804955
+            }
+          },
+          "W2": {
+            "0.25": {
+              "interactions": 1000,
+              "measured_alerts": 228,
+              "evidence_generation_latency": {
+                "mean_ms": 0.14510910000080912,
+                "p95_ms": 0.1733049999074865,
+                "p99_ms": 0.21995999944010666
+              }
+            },
+            "0.5": {
+              "interactions": 1000,
+              "measured_alerts": 534,
+              "evidence_generation_latency": {
+                "mean_ms": 0.14957139999205538,
+                "p95_ms": 0.22493999990729205,
+                "p99_ms": 0.2832030000081432
+              }
+            },
+            "1.0": {
+              "interactions": 1000,
+              "measured_alerts": 1000,
+              "evidence_generation_latency": {
+                "mean_ms": 0.14308139998684055,
+                "p95_ms": 0.16930500032685813,
+                "p99_ms": 0.2121259997693414
+              }
+            }
+          },
+          "W3": {
+            "0.1": {
+              "attempted": 10000,
+              "invalid_attempts": 1000,
+              "valid_controls": 9000,
+              "accepted_invalid": 0,
+              "accepted_valid": 9000,
+              "duplicate_alerts": 9097,
+              "wall_seconds": 15.558892099999866,
+              "cpu_seconds": 15.453125,
+              "alerts_per_second": 642.7192846205345,
+              "cost_per_attempt_us": 1555.8892099999866
+            },
+            "0.5": {
+              "attempted": 10000,
+              "invalid_attempts": 5000,
+              "valid_controls": 5000,
+              "accepted_invalid": 0,
+              "accepted_valid": 5000,
+              "duplicate_alerts": 5497,
+              "wall_seconds": 15.850344200000109,
+              "cpu_seconds": 15.75,
+              "alerts_per_second": 630.9011257938444,
+              "cost_per_attempt_us": 1585.0344200000109
+            },
+            "0.9": {
+              "attempted": 10000,
+              "invalid_attempts": 9000,
+              "valid_controls": 1000,
+              "accepted_invalid": 0,
+              "accepted_valid": 1000,
+              "duplicate_alerts": 1897,
+              "wall_seconds": 15.12323860000015,
+              "cpu_seconds": 15.09375,
+              "alerts_per_second": 661.2340295946863,
+              "cost_per_attempt_us": 1512.323860000015
+            },
+            "1.0": {
+              "attempted": 10000,
+              "invalid_attempts": 10000,
+              "valid_controls": 0,
+              "accepted_invalid": 0,
+              "accepted_valid": 0,
+              "duplicate_alerts": 999,
+              "wall_seconds": 15.04495450000013,
+              "cpu_seconds": 15.046875,
+              "alerts_per_second": 664.6746588698498,
+              "cost_per_attempt_us": 1504.495450000013
+            }
+          }
+        },
+        "third_party_path": {
+          "n": 1000,
+          "mean": 0.0013343067000032534,
+          "stddev": 0.0002048316107439877,
+          "median": 0.0012413499998729094,
+          "p50": 0.0012413499998729094,
+          "p95": 0.0016916599995056459,
+          "p99": 0.0021529170005032934,
+          "min": 0.001133799999479379,
+          "max": 0.002769800000351097,
+          "iterations": 1000,
+          "latency_ms": {
+            "mean": 1.3343067000032534,
+            "p50": 1.2413499998729094,
+            "p95": 1.6916599995056458,
+            "p99": 2.1529170005032934
+          },
+          "cpu_seconds_per_operation": 0.00134375,
+          "operations_per_second": 748.137381065546,
+          "path": "anchor verification, direct-provider bundle retrieval, proof verification, signature verification, and rule re-evaluation",
+          "decision": "ACCEPT",
+          "reason": "ACCEPT",
+          "network_included": false,
+          "participant_local_state_used": false
+        },
+        "wire_and_root_publication": {
+          "audit_event_bytes": 545,
+          "revoke_advice_bytes": 535,
+          "root_attestation_bytes": 352,
+          "inclusion_proof_bytes": 39,
+          "bundle_bytes": 2894,
+          "root_publication": {
+            "1": {
+              "root_publication_seconds": 0.0006199999997988925,
+              "root_bytes": 352,
+              "amortized_bytes_per_event": 352.0
+            },
+            "10": {
+              "root_publication_seconds": 0.0014601000002585351,
+              "root_bytes": 354,
+              "amortized_bytes_per_event": 35.4
+            },
+            "100": {
+              "root_publication_seconds": 0.005237700000179757,
+              "root_bytes": 356,
+              "amortized_bytes_per_event": 3.56
+            },
+            "1000": {
+              "root_publication_seconds": 0.04663500000060594,
+              "root_bytes": 358,
+              "amortized_bytes_per_event": 0.358
+            }
+          }
+        },
+        "warmup_policy": "100 operations before each microbenchmark",
+        "measurement_boundaries": "Python perf_counter wall time and process_time CPU time"
+      }
+    },
+    "E7": {
+      "status": "completed",
+      "elapsed_seconds": 0.5129710000001069,
+      "result": {
+        "status": "verified",
+        "proverif_executable": "E:\\文档\\论文\\.tools\\proverif2.05\\proverif.exe",
+        "positive_model": "E:\\文档\\论文\\experiments\\E7_formal_verification\\results\\latest\\models\\EBA_positive.pv",
+        "negative_models_expected_to_fail": {
+          "N1_shared_session_key": "R5",
+          "N2_remove_copy_hash": "R3",
+          "N3_remove_anchor_window": "freshness/expiry",
+          "N4_remove_rule_re_evaluation": "R3",
+          "N5_single_sided_root": "truncation/equivocation coverage",
+          "N6_remove_accuser_signature": "R4"
+        },
+        "runs": {
+          "EBA_positive": {
+            "command": "E:\\文档\\论文\\.tools\\proverif2.05\\proverif.exe E:\\文档\\论文\\experiments\\E7_formal_verification\\results\\latest\\models\\EBA_positive.pv",
+            "returncode": 0,
+            "query_results": {
+              "R1_authentication": true,
+              "R2_chain_binding": true,
+              "R3_evidence_and_rule": true,
+              "R4_non_repudiation": true,
+              "R5_anchor_binding": true,
+              "Q6_freshness": true,
+              "Q7_accuser_verification": true,
+              "Q8_two_sided_roots": true
+            },
+            "query_count": 8,
+            "stdout": "E:\\文档\\论文\\experiments\\E7_formal_verification\\results\\latest\\traces\\EBA_positive.stdout.txt",
+            "stderr": "E:\\文档\\论文\\experiments\\E7_formal_verification\\results\\latest\\traces\\EBA_positive.stderr.txt"
+          },
+          "N1_shared_session_key": {
+            "command": "E:\\文档\\论文\\.tools\\proverif2.05\\proverif.exe E:\\文档\\论文\\experiments\\E7_formal_verification\\results\\latest\\models\\N1_shared_session_key.pv",
+            "returncode": 0,
+            "query_results": {
+              "R1_authentication": true,
+              "R2_chain_binding": true,
+              "R3_evidence_and_rule": true,
+              "R4_non_repudiation": true,
+              "R5_anchor_binding": false,
+              "Q6_freshness": true,
+              "Q7_accuser_verification": true,
+              "Q8_two_sided_roots": true
+            },
+            "query_count": 8,
+            "stdout": "E:\\文档\\论文\\experiments\\E7_formal_verification\\results\\latest\\traces\\N1_shared_session_key.stdout.txt",
+            "stderr": "E:\\文档\\论文\\experiments\\E7_formal_verification\\results\\latest\\traces\\N1_shared_session_key.stderr.txt"
+          },
+          "N2_remove_copy_hash": {
+            "command": "E:\\文档\\论文\\.tools\\proverif2.05\\proverif.exe E:\\文档\\论文\\experiments\\E7_formal_verification\\results\\latest\\models\\N2_remove_copy_hash.pv",
+            "returncode": 0,
+            "query_results": {
+              "R1_authentication": true,
+              "R2_chain_binding": true,
+              "R3_evidence_and_rule": false,
+              "R4_non_repudiation": true,
+              "R5_anchor_binding": true,
+              "Q6_freshness": true,
+              "Q7_accuser_verification": true,
+              "Q8_two_sided_roots": true
+            },
+            "query_count": 8,
+            "stdout": "E:\\文档\\论文\\experiments\\E7_formal_verification\\results\\latest\\traces\\N2_remove_copy_hash.stdout.txt",
+            "stderr": "E:\\文档\\论文\\experiments\\E7_formal_verification\\results\\latest\\traces\\N2_remove_copy_hash.stderr.txt"
+          },
+          "N3_remove_anchor_window": {
+            "command": "E:\\文档\\论文\\.tools\\proverif2.05\\proverif.exe E:\\文档\\论文\\experiments\\E7_formal_verification\\results\\latest\\models\\N3_remove_anchor_window.pv",
+            "returncode": 0,
+            "query_results": {
+              "R1_authentication": true,
+              "R2_chain_binding": true,
+              "R3_evidence_and_rule": true,
+              "R4_non_repudiation": true,
+              "R5_anchor_binding": true,
+              "Q6_freshness": false,
+              "Q7_accuser_verification": true,
+              "Q8_two_sided_roots": true
+            },
+            "query_count": 8,
+            "stdout": "E:\\文档\\论文\\experiments\\E7_formal_verification\\results\\latest\\traces\\N3_remove_anchor_window.stdout.txt",
+            "stderr": "E:\\文档\\论文\\experiments\\E7_formal_verification\\results\\latest\\traces\\N3_remove_anchor_window.stderr.txt"
+          },
+          "N4_remove_rule_re_evaluation": {
+            "command": "E:\\文档\\论文\\.tools\\proverif2.05\\proverif.exe E:\\文档\\论文\\experiments\\E7_formal_verification\\results\\latest\\models\\N4_remove_rule_re_evaluation.pv",
+            "returncode": 0,
+            "query_results": {
+              "R1_authentication": true,
+              "R2_chain_binding": true,
+              "R3_evidence_and_rule": false,
+              "R4_non_repudiation": true,
+              "R5_anchor_binding": true,
+              "Q6_freshness": true,
+              "Q7_accuser_verification": true,
+              "Q8_two_sided_roots": true
+            },
+            "query_count": 8,
+            "stdout": "E:\\文档\\论文\\experiments\\E7_formal_verification\\results\\latest\\traces\\N4_remove_rule_re_evaluation.stdout.txt",
+            "stderr": "E:\\文档\\论文\\experiments\\E7_formal_verification\\results\\latest\\traces\\N4_remove_rule_re_evaluation.stderr.txt"
+          },
+          "N5_single_sided_root": {
+            "command": "E:\\文档\\论文\\.tools\\proverif2.05\\proverif.exe E:\\文档\\论文\\experiments\\E7_formal_verification\\results\\latest\\models\\N5_single_sided_root.pv",
+            "returncode": 0,
+            "query_results": {
+              "R1_authentication": true,
+              "R2_chain_binding": true,
+              "R3_evidence_and_rule": true,
+              "R4_non_repudiation": true,
+              "R5_anchor_binding": true,
+              "Q6_freshness": true,
+              "Q7_accuser_verification": true,
+              "Q8_two_sided_roots": false
+            },
+            "query_count": 8,
+            "stdout": "E:\\文档\\论文\\experiments\\E7_formal_verification\\results\\latest\\traces\\N5_single_sided_root.stdout.txt",
+            "stderr": "E:\\文档\\论文\\experiments\\E7_formal_verification\\results\\latest\\traces\\N5_single_sided_root.stderr.txt"
+          },
+          "N6_remove_accuser_signature": {
+            "command": "E:\\文档\\论文\\.tools\\proverif2.05\\proverif.exe E:\\文档\\论文\\experiments\\E7_formal_verification\\results\\latest\\models\\N6_remove_accuser_signature.pv",
+            "returncode": 0,
+            "query_results": {
+              "R1_authentication": true,
+              "R2_chain_binding": true,
+              "R3_evidence_and_rule": true,
+              "R4_non_repudiation": false,
+              "R5_anchor_binding": true,
+              "Q6_freshness": true,
+              "Q7_accuser_verification": false,
+              "Q8_two_sided_roots": true
+            },
+            "query_count": 8,
+            "stdout": "E:\\文档\\论文\\experiments\\E7_formal_verification\\results\\latest\\traces\\N6_remove_accuser_signature.stdout.txt",
+            "stderr": "E:\\文档\\论文\\experiments\\E7_formal_verification\\results\\latest\\traces\\N6_remove_accuser_signature.stderr.txt"
+          },
+          "negative_checks": {
+            "N1_shared_session_key": {
+              "expected_failure": "R5",
+              "expected_queries": [
+                "R5_anchor_binding"
+              ],
+              "expected_failure_observed": true,
+              "unaffected_queries_passed": true,
+              "passed": true
+            },
+            "N2_remove_copy_hash": {
+              "expected_failure": "R3",
+              "expected_queries": [
+                "R3_evidence_and_rule"
+              ],
+              "expected_failure_observed": true,
+              "unaffected_queries_passed": true,
+              "passed": true
+            },
+            "N3_remove_anchor_window": {
+              "expected_failure": "freshness/expiry",
+              "expected_queries": [
+                "Q6_freshness"
+              ],
+              "expected_failure_observed": true,
+              "unaffected_queries_passed": true,
+              "passed": true
+            },
+            "N4_remove_rule_re_evaluation": {
+              "expected_failure": "R3",
+              "expected_queries": [
+                "R3_evidence_and_rule"
+              ],
+              "expected_failure_observed": true,
+              "unaffected_queries_passed": true,
+              "passed": true
+            },
+            "N5_single_sided_root": {
+              "expected_failure": "truncation/equivocation coverage",
+              "expected_queries": [
+                "Q8_two_sided_roots"
+              ],
+              "expected_failure_observed": true,
+              "unaffected_queries_passed": true,
+              "passed": true
+            },
+            "N6_remove_accuser_signature": {
+              "expected_failure": "R4",
+              "expected_queries": [
+                "Q7_accuser_verification",
+                "R4_non_repudiation"
+              ],
+              "expected_failure_observed": true,
+              "unaffected_queries_passed": true,
+              "passed": true
+            }
+          }
+        },
+        "artifacts_preserved": true,
+        "positive_all_queries_passed": true,
+        "negative_expected_failures_passed": true
+      }
+    },
+    "E8": {
+      "status": "completed",
+      "elapsed_seconds": 1.1857366000003822,
+      "result": {
+        "profile": "standard",
+        "alerts_scanned": 1000,
+        "business_marker_occurrences": {
+          "alert": 0,
+          "root": 0,
+          "proof": 0,
+          "bundle": 0
+        },
+        "injection_marker_occurrences": {
+          "alert": 0,
+          "root": 0,
+          "proof": 0,
+          "bundle": 0
+        },
+        "designated_executable_marker_occurrences": {
+          "alert": 0,
+          "root": 0,
+          "proof": 0,
+          "bundle": 0
+        },
+        "injectable_field_names": {},
+        "injectable_field_name_scope": [
+          "command",
+          "content",
+          "executable",
+          "instructions",
+          "payload",
+          "prompt",
+          "script"
+        ],
+        "alert_schema_keys": [
+          "accuser",
+          "amount",
+          "anchor",
+          "anchor_ref",
+          "calls_in_window",
+          "content_policy_ok",
+          "copy_hash",
+          "d",
+          "delegation_depth",
+          "end_seq",
+          "event",
+          "granted",
+          "h0_ab",
+          "h0_ba",
+          "ik_a",
+          "ik_b",
+          "inclusion_proof",
+          "index",
+          "intent_meta",
+          "payload_hash",
+          "perm_scope",
+          "pk_a",
+          "pk_b",
+          "prev_hash",
+          "publisher",
+          "q_a",
+          "q_b",
+          "receiver",
+          "requested",
+          "result",
+          "root",
+          "root_attestation",
+          "root_ref",
+          "rule_id",
+          "rule_version",
+          "sender",
+          "seq",
+          "siblings",
+          "sid",
+          "sig",
+          "sig_a",
+          "sig_b",
+          "start_seq",
+          "t_end",
+          "t_start",
+          "target",
+          "tree_size",
+          "ts"
+        ],
+        "scanned_object_keys": [
+          "accuser",
+          "amount",
+          "anchor",
+          "anchor_ref",
+          "calls_in_window",
+          "content_policy_ok",
+          "copy_hash",
+          "d",
+          "delegation_depth",
+          "end_seq",
+          "event",
+          "granted",
+          "h0_ab",
+          "h0_ba",
+          "ik_a",
+          "ik_b",
+          "inclusion_proof",
+          "index",
+          "intent_meta",
+          "payload_hash",
+          "perm_scope",
+          "pk_a",
+          "pk_b",
+          "prev_hash",
+          "publisher",
+          "q_a",
+          "q_b",
+          "receiver",
+          "requested",
+          "result",
+          "root",
+          "root_attestation",
+          "root_ref",
+          "rule_id",
+          "rule_version",
+          "sender",
+          "seq",
+          "siblings",
+          "sid",
+          "sig",
+          "sig_a",
+          "sig_b",
+          "start_seq",
+          "t_end",
+          "t_start",
+          "target",
+          "tree_size",
+          "ts"
+        ],
+        "wire_object_sizes": {
+          "alert_canonical_bytes": 536,
+          "root_canonical_bytes": 352,
+          "proof_canonical_bytes": 39
+        },
+        "raw_object_scans": {
+          "alert": "{\"accuser\": \"b\", \"anchor_ref\": \"32c1767aa3fef12d9684cf2382d61c668a575925d9949ec52198b8ec66b36ef6\", \"copy_hash\": \"a958886f58faa12a76067e62597391d5b7c46444ce1048bb1d5d83a299180825\", \"d\": \"a->b\", \"inclusion_proof\": {\"index\": 0, \"siblings\": [], \"tree_size\": 1}, \"result\": \"violation\", \"root_ref\": \"ebf8b061502a6400a966d8d868a67d9115287f48df3fcca5b3a1589897fcd88e\", \"rule_id\": \"ALLOW-1\", \"rule_version\": \"v1\", \"seq\": 1, \"sig\": \"d25f291547227030594ce78a6a5d9f30ef628a39717fa3913ee0ccc82aed48ee47c4f97d027fb4977a301b9473346f3c262063f0743f993e7760f524b8d93d06\", \"ts\": 111}",
+          "root": "{\"d\": \"a->b\", \"end_seq\": 1, \"publisher\": \"a\", \"root\": \"67220d97e733c3f432d11a61865c9285dd12dd0bddd29016a7a020858035a0f2\", \"sid\": \"6caab6a04d5ffa824038a5ebaf68f2f9833a17d7d070142c15c9c66bee0a80c0\", \"sig\": \"b88c6ace243874d722fa457d5023d2bc280bf689353a464e8150528bed356e678db11e78a640c06b780bcd3cb5a8a7cf5eafdf676a414e17e2a49fb94676e809\", \"start_seq\": 1, \"tree_size\": 1}",
+          "proof": "{\"index\": 0, \"siblings\": [], \"tree_size\": 1}",
+          "bundle": "{\"anchor\": {\"h0_ab\": \"4bc08b590867af3617da59a62ff810c7a18bd0071207833c5f84f5dd7fec7c3c\", \"h0_ba\": \"ae6a9cdb719df288ab72d299bd28b78fc63219ff0e467002eccc0919a26d14d9\", \"ik_a\": \"f4b21fda02a38388625e2a1091bd5cf49beda79d3e08f1cfbeefdf071c569d96\", \"ik_b\": \"25ec9dc462a3baf13ccfcfd444cfd225a58348abcbdc8e4fe1cfd34e9470bcad\", \"pk_a\": \"5e2ce5128140ede2a8b532d7548d599e85e7cf9a27f451500881a9bf2da81ea3\", \"pk_b\": \"24b23f2273c5f8d47097df7e22c5d60a21ae156c7b0743edb55372e7a47680fb\", \"q_a\": \"eyJhZ2VudCI6ImEiLCJpayI6ImY0YjIxZmRhMDJhMzgzODg2MjVlMmExMDkxYmQ1Y2Y0OWJlZGE3OWQzZTA4ZjFjZmJlZWZkZjA3MWM1NjlkOTYiLCJwayI6IjVlMmNlNTEyODE0MGVkZTJhOGI1MzJkNzU0OGQ1OTllODVlN2NmOWEyN2Y0NTE1MDA4ODFhOWJmMmRhODFlYTMiLCJzaWQiOiI2Y2FhYjZhMDRkNWZmYTgyNDAzOGE1ZWJhZjY4ZjJmOTgzM2ExN2Q3ZDA3MDE0MmMxNWM5YzY2YmVlMGE4MGMwIiwic2lnIjoiODEyMjZlMDdkMmE0MjNmYjhlYjUwOGUzMTc5MmU3YzlhZjAyNWViMDdiYTNhM2E4MzYyOTg3MmI2YzQ2MGQzOTc2NjgxOTZmY2ZjNmU2OTU5MTRlMTA1ODYwNTg5NjYzNmZmNmM4NDllYjU0NTYzNGZlOGQ3ZDdhMWIyMmM5MGIiLCJ0X2VuZCI6MTAwMDAsInRfc3RhcnQiOjEwMH0=\", \"q_b\": \"eyJhZ2VudCI6ImIiLCJpayI6IjI1ZWM5ZGM0NjJhM2JhZjEzY2NmY2ZkNDQ0Y2ZkMjI1YTU4MzQ4YWJjYmRjOGU0ZmUxY2ZkMzRlOTQ3MGJjYWQiLCJwayI6IjI0YjIzZjIyNzNjNWY4ZDQ3MDk3ZGY3ZTIyYzVkNjBhMjFhZTE1NmM3YjA3NDNlZGI1NTM3MmU3YTQ3NjgwZmIiLCJzaWQiOiI2Y2FhYjZhMDRkNWZmYTgyNDAzOGE1ZWJhZjY4ZjJmOTgzM2ExN2Q3ZDA3MDE0MmMxNWM5YzY2YmVlMGE4MGMwIiwic2lnIjoiYzMxMzM3OWU2OTQ2NjlkMTA0YjQ0MGI1YmI5NmE4NmZjZTJmOTk1NzY5OGRkMTlhM2YzYmM1NDIwZDNiNzRiMmZkYmJlNTVlZGExYWFjYmE5MDEyZjM1MTA3OTcwM2QyNmZlMzFhNGJkZmQwYjlhYzEyODllMTA4ODYyNzI5MDUiLCJ0X2VuZCI6MTAwMDAsInRfc3RhcnQiOjEwMH0=\", \"sid\": \"6caab6a04d5ffa824038a5ebaf68f2f9833a17d7d070142c15c9c66bee0a80c0\", \"sig_a\": \"a9b51eac041a5747f1b48fb8fb4f82e25b2f6a5962d9a1fae61c9d171224e0319461bd31a8a625e56d54d308c56b9a04b7e5cc63ac94e9fb73ea8764fda5ed03\", \"sig_b\": \"1dd89130555dcd2121c59594e822d2b116fb1485762c43afbd69eea3b67aed60eaefc2570286d0d2e5aa50031b77c13dcdad35bc1e5ea8f5d8738bcd8c0b5005\", \"t_end\": 10000, \"t_start\": 100}, \"event\": {\"d\": \"a->b\", \"intent_meta\": {\"amount\": 100, \"target\": \"outside-allowlist\"}, \"payload_hash\": \"78bf0886561f1c206970412251e22c3490cc9e47dc7aef4d12b0dc0b0e3db6cc\", \"perm_scope\": {\"granted\": [\"read\", \"pay\"], \"requested\": [\"pay\"]}, \"prev_hash\": \"4bc08b590867af3617da59a62ff810c7a18bd0071207833c5f84f5dd7fec7c3c\", \"receiver\": \"b\", \"sender\": \"a\", \"seq\": 1, \"sid\": \"6caab6a04d5ffa824038a5ebaf68f2f9833a17d7d070142c15c9c66bee0a80c0\", \"sig\": \"18edd09807443f964ea82a99fdb823612a428e9198638df771f5a668ee5f3492a39704e345ea7070142c08e2a145049296f6a9b9d15d441ee78a82b624bd5306\", \"ts\": 110}, \"inclusion_proof\": {\"index\": 0, \"siblings\": [], \"tree_size\": 1}, \"root_attestation\": {\"d\": \"a->b\", \"end_seq\": 1, \"publisher\": \"a\", \"root\": \"67220d97e733c3f432d11a61865c9285dd12dd0bddd29016a7a020858035a0f2\", \"sid\": \"6caab6a04d5ffa824038a5ebaf68f2f9833a17d7d070142c15c9c66bee0a80c0\", \"sig\": \"b88c6ace243874d722fa457d5023d2bc280bf689353a464e8150528bed356e678db11e78a640c06b780bcd3cb5a8a7cf5eafdf676a414e17e2a49fb94676e809\", \"start_seq\": 1, \"tree_size\": 1}}"
+        },
+        "checks": {
+          "no_business_payload_in_alert": true,
+          "no_business_payload_in_root": true,
+          "no_business_payload_in_proof": true,
+          "no_business_payload_in_bundle_or_retrieval": true,
+          "no_injection_text_in_alert": true,
+          "no_injection_text_in_root": true,
+          "no_injection_text_in_proof": true,
+          "no_injection_text_in_bundle_or_retrieval": true,
+          "no_designated_executable_marker_in_alert": true,
+          "no_designated_executable_marker_in_root": true,
+          "no_designated_executable_marker_in_proof": true,
+          "no_designated_executable_marker_in_bundle": true,
+          "no_injectable_object_field_names": true,
+          "sample_alert_verifies": true,
+          "salted_handle_recomputation_stable": true,
+          "salted_handle_separates_sessions": true,
+          "salted_handle_separates_salts": true
+        },
+        "all_payload_privacy_checks_passed": true,
+        "metadata_disclosure": [
+          "session identifier",
+          "direction",
+          "sequence number",
+          "timestamps",
+          "rule identifier and version",
+          "publisher or accuser identity",
+          "session volume visible through root ranges"
+        ],
+        "anonymity_claimed": false,
+        "interaction_graph_unlinkability_claimed": false,
+        "generic_executable_content_detection_performed": false,
+        "scope_note": "Checks cover one business payload marker, one instruction-injection marker, one designated executable marker, and the listed injectable field names. They do not perform generic executable-content detection."
+      }
+    }
+  },
+  "finished_at": "2026-09-22T08:41:58.498116+00:00"
+}
